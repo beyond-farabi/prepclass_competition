@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Prep Class Quest</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
@@ -52,6 +51,17 @@ button,select{font-family:var(--body)}
 @keyframes bl{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
 .pulse{animation:pu 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes pu{50%{transform:scale(1.4)}}
+.hov{animation:hov 3.4s ease-in-out infinite}@keyframes hov{50%{transform:translateY(-7px)}}
+.ant{animation:ant 3.2s ease-in-out infinite;transform-box:view-box}@keyframes ant{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+.sway{animation:swy 3.6s ease-in-out infinite;transform-box:view-box}@keyframes swy{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-6deg)}}
+.wv2{animation:wv2 1s ease-in-out infinite;transform-box:view-box}@keyframes wv2{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(16deg)}}
+.look{animation:lk 7s ease-in-out infinite}@keyframes lk{0%,28%,100%{transform:translateX(0)}38%,58%{transform:translateX(6px)}68%,86%{transform:translateX(-6px)}}
+.br{animation:br 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}@keyframes br{50%{transform:scale(1.03,1.02)}}
+.tw{animation:tw 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes tw{0%,100%{transform:scale(.35);opacity:.25}50%{transform:scale(1);opacity:1}}
+.kb{animation:kb 1.5s ease-in-out infinite}@keyframes kb{50%{transform:translateY(-3px)}}
+.plume{animation:plm 1.6s ease-in-out infinite;transform-box:view-box}@keyframes plm{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(7deg)}}
+.cape{animation:cp 1.8s ease-in-out infinite;transform-box:view-box}@keyframes cp{50%{transform:rotate(-6deg) scaleX(.94)}}
+.fw{animation:fw 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:0 50%}@keyframes fw{50%{transform:skewY(5deg) scaleX(.93)}}
 .mas{display:block;width:100%;height:auto;overflow:visible}
 
 /* type + parts */
@@ -294,40 +304,113 @@ ${ring?`<g transform="rotate(-16 200 200)"><ellipse cx="200" cy="200" rx="320" r
 <circle cx="200" cy="200" r="200" fill="url(#${id}g)"/><g clip-path="url(#${id}c)">${bands}<ellipse cx="130" cy="110" rx="84" ry="46" fill="#fff" opacity=".2" transform="rotate(-30 130 110)"/></g>
 ${ring?`<g transform="rotate(-16 200 200)"><ellipse clip-path="url(#${id}r)" cx="200" cy="200" rx="320" ry="78" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="26"/><ellipse clip-path="url(#${id}r)" cx="200" cy="200" rx="296" ry="70" fill="none" stroke="${a}" stroke-opacity=".7" stroke-width="6"/></g>`:''}
 </svg></div>`};
-const jojo=()=>`<svg class="mas" viewBox="0 0 240 300"><defs><linearGradient id="jb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d6cdf5"/></linearGradient><linearGradient id="jv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a22a0"/><stop offset="1" stop-color="#0d0830"/></linearGradient></defs>
-<ellipse cx="120" cy="292" rx="70" ry="8" fill="#000" opacity=".25"/>
-<rect x="38" y="104" width="164" height="112" rx="40" fill="#8f80e0"/>
-<rect x="84" y="206" width="30" height="62" rx="15" fill="url(#jb)"/><rect x="126" y="206" width="30" height="62" rx="15" fill="url(#jb)"/>
-<rect x="78" y="256" width="42" height="26" rx="13" fill="#5800e5"/><rect x="120" y="256" width="42" height="26" rx="13" fill="#5800e5"/>
-<rect x="64" y="100" width="112" height="120" rx="40" fill="url(#jb)"/>
-<rect x="92" y="136" width="56" height="36" rx="10" fill="#5800e5"/><circle cx="108" cy="154" r="6" fill="#d9ff00"/><circle cx="128" cy="154" r="6" fill="#ffb938"/><rect x="92" y="186" width="56" height="8" rx="4" fill="#b299ff"/>
-<rect x="30" y="122" width="48" height="26" rx="13" fill="url(#jb)" transform="rotate(30 52 135)"/><circle cx="36" cy="150" r="14" fill="#5800e5"/>
-<g class="wave"><rect x="164" y="108" width="50" height="26" rx="13" fill="url(#jb)" transform="rotate(-52 168 121)"/><circle cx="208" cy="88" r="15" fill="#d9ff00"/></g>
-<circle cx="120" cy="78" r="66" fill="url(#jb)"/><circle cx="120" cy="78" r="66" fill="none" stroke="#c4baf0" stroke-width="6"/>
-<ellipse cx="120" cy="82" rx="50" ry="42" fill="url(#jv)"/><ellipse cx="98" cy="62" rx="16" ry="9" fill="#fff" opacity=".6" transform="rotate(-28 98 62)"/>
-<g class="blink"><circle cx="104" cy="86" r="7" fill="#46e3ff"/><circle cx="136" cy="86" r="7" fill="#46e3ff"/></g><path d="M108 102q12 11 24 0" stroke="#d9ff00" stroke-width="5" fill="none" stroke-linecap="round"/>
-<circle cx="72" cy="58" r="5" fill="#ff2e92"/></svg>`;
-const algobot=()=>`<svg class="mas" viewBox="0 0 200 250"><defs><linearGradient id="ab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9b63f0"/><stop offset="1" stop-color="#5a24c9"/></linearGradient></defs>
-<ellipse cx="100" cy="244" rx="56" ry="7" fill="#000" opacity=".25"/>
-<line x1="100" y1="24" x2="100" y2="54" stroke="#b299ff" stroke-width="6" stroke-linecap="round"/><circle class="pulse" cx="100" cy="18" r="12" fill="#d9ff00"/>
-<rect x="6" y="96" width="30" height="16" rx="8" fill="#b299ff" transform="rotate(-25 20 104)"/><rect x="164" y="96" width="30" height="16" rx="8" fill="#b299ff" transform="rotate(25 180 104)"/>
-<rect x="28" y="52" width="144" height="118" rx="42" fill="url(#ab)"/><rect x="44" y="70" width="112" height="72" rx="30" fill="#140a2e"/>
-<ellipse cx="62" cy="80" rx="12" ry="5" fill="#fff" opacity=".18"/>
-<rect class="blink" x="66" y="86" width="22" height="32" rx="11" fill="#46e3ff"/><rect class="blink" x="112" y="86" width="22" height="32" rx="11" fill="#46e3ff"/>
-<path d="M84 130q16 12 32 0" stroke="#d9ff00" stroke-width="5" fill="none" stroke-linecap="round"/>
-<circle cx="52" cy="152" r="7" fill="#ff2e92" opacity=".85"/><circle cx="148" cy="152" r="7" fill="#ff2e92" opacity=".85"/>
-<rect x="50" y="162" width="100" height="58" rx="26" fill="#5800e5"/><rect x="82" y="176" width="36" height="22" rx="8" fill="#140a2e"/><circle cx="92" cy="187" r="4" fill="#d9ff00"/><circle cx="108" cy="187" r="4" fill="#ffb938"/>
-<ellipse cx="76" cy="228" rx="22" ry="11" fill="#b299ff"/><ellipse cx="124" cy="228" rx="22" ry="11" fill="#b299ff"/></svg>`;
-const rocket=()=>`<svg class="mas" viewBox="0 0 200 420"><defs><linearGradient id="rk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e9e4ff"/><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#b9acec"/></linearGradient><linearGradient id="rf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6a8"/><stop offset=".4" stop-color="#ffb938"/><stop offset="1" stop-color="#ff2e92" stop-opacity="0"/></linearGradient></defs>
-<g class="flame"><path d="M78 300C70 340 92 390 100 416C108 390 130 340 122 300Z" fill="url(#rf)"/><path d="M90 300C88 330 98 356 100 372C102 356 112 330 110 300Z" fill="#fff"/></g>
-<path d="M62 210C30 240 28 290 34 306L74 290Z" fill="#ff2e92"/><path d="M138 210C170 240 172 290 166 306L126 290Z" fill="#ff2e92"/>
-<path d="M100 8C152 66 152 200 130 306H70C48 200 48 66 100 8Z" fill="url(#rk)"/>
-<path d="M100 8C120 30 132 56 138 84C120 70 80 70 62 84C68 56 80 30 100 8Z" fill="#5800e5"/>
-<circle cx="100" cy="142" r="32" fill="#2a1a78"/><circle cx="100" cy="142" r="24" fill="#140a2e"/><ellipse cx="92" cy="134" rx="9" ry="5" fill="#fff" opacity=".5" transform="rotate(-30 92 134)"/>
-<rect x="64" y="230" width="72" height="10" rx="5" fill="#d9ff00"/><rect x="72" y="252" width="56" height="8" rx="4" fill="#5800e5" opacity=".35"/>
-<path d="M70 306h60l-6 14H76z" fill="#8f80e0"/></svg>`;
-const knight=()=>`<svg class="mas" viewBox="0 0 100 100"><path d="M24 52q-16 14-10 40l26-8z" fill="#2d6bff"/><rect x="28" y="50" width="44" height="40" rx="14" fill="#cfd8e3"/><rect x="34" y="60" width="32" height="8" rx="4" fill="#8fa0b3"/><circle cx="50" cy="38" r="22" fill="#e1e8f0"/><rect x="36" y="32" width="28" height="9" rx="4" fill="#223"/><path d="M50 14q18-10 24 8q-12-2-24 4z" fill="#ff2e57"/><rect x="68" y="52" width="7" height="36" rx="3" fill="#fff" transform="rotate(20 70 70)"/></svg>`;
-const flagS=()=>`<svg class="mas" viewBox="0 0 100 100"><rect x="30" y="16" width="6" height="68" rx="3" fill="#fff"/><path d="M36 18l42 15-42 17z" fill="#ff2e57"/></svg>`;
+/* ===== characters v3: layered SVG, soft-3D shading, idle animation (original designs) ===== */
+const GR=(id,a,stops,t='linear')=>t==='radial'?`<radialGradient id="${id}" cx=".35" cy=".3" r=".85">${stops.map((s,i)=>`<stop offset="${s[0]}" stop-color="${s[1]}"/>`).join('')}</radialGradient>`:`<linearGradient id="${id}" x1="${a[0]}" y1="${a[1]}" x2="${a[2]}" y2="${a[3]}">${stops.map(s=>`<stop offset="${s[0]}" stop-color="${s[1]}"${s[2]!=null?` stop-opacity="${s[2]}"`:''}/>`).join('')}</linearGradient>`;
+const GLOW=k=>`<filter id="x${k}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7"/></filter><filter id="y${k}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.4"/></filter>`;
+const STAR4='M0 -14Q2 -2 14 0Q2 2 0 14Q-2 2 -14 0Q-2 -2 0 -14Z';
+
+/* ---------- Algobot: friendly floating robot ---------- */
+const algobot=()=>{const k=++PID,u=n=>`url(#${n}${k})`;return `<svg class="mas" viewBox="0 0 260 330"><defs>
+${GR('h'+k,[.1,0,.9,1],[[0,'#cdb0ff'],[.42,'#8a4df5'],[1,'#4616b4']])}${GR('b'+k,[0,0,1,1],[[0,'#a56cf8'],[1,'#3a10a4']])}
+${GR('s'+k,[0,0,0,1],[[0,'#21165a'],[1,'#070320']])}${GR('e'+k,[0,0,0,1],[[0,'#dcfcff'],[.5,'#46e3ff'],[1,'#1a98ff']])}
+${GR('o'+k,0,[[0,'#fffdb8'],[.5,'#d9ff00'],[1,'#7f9a00']],'radial')}${GR('f'+k,[0,0,0,1],[[0,'#fff6a8'],[.45,'#ffb938'],[1,'#ff2e92',0]])}
+${GR('a'+k,[0,0,1,0],[[0,'#e9e0ff'],[1,'#b79cff']])}${GLOW(k)}</defs>
+<g class="hov">
+<g class="flame"><ellipse cx="130" cy="290" rx="30" ry="26" fill="#ffb938" opacity=".5" filter="${u('x')}"/><path d="M110 262C106 286 122 300 130 316C138 300 154 286 150 262Z" fill="${u('f')}"/><path d="M121 262C120 277 127 287 130 296C133 287 140 277 139 262Z" fill="#fff" opacity=".92"/></g>
+<g class="ant" style="transform-origin:130px 56px"><path d="M130 60V28" stroke="#bda6ff" stroke-width="7" stroke-linecap="round"/><circle class="pulse" cx="130" cy="14" r="26" fill="#d9ff00" opacity=".5" filter="${u('x')}"/><circle cx="130" cy="14" r="14" fill="${u('o')}"/><ellipse cx="125" cy="9" rx="5" ry="3" fill="#fff" opacity=".85"/></g>
+<rect x="20" y="98" width="38" height="60" rx="19" fill="${u('b')}"/><rect x="202" y="98" width="38" height="60" rx="19" fill="${u('b')}"/>
+<rect x="29" y="112" width="7" height="32" rx="3.5" fill="#d9ff00"/><rect x="224" y="112" width="7" height="32" rx="3.5" fill="#d9ff00"/>
+<rect x="82" y="194" width="96" height="76" rx="36" fill="${u('b')}"/><path d="M92 206Q84 232 96 256" stroke="#fff" stroke-opacity=".28" stroke-width="5" fill="none" stroke-linecap="round"/>
+<circle cx="130" cy="234" r="19" fill="#12082e"/><circle cx="130" cy="234" r="19" fill="none" stroke="#bda6ff" stroke-width="4"/><circle class="pulse" cx="130" cy="234" r="10" fill="${u('o')}"/>
+<ellipse cx="130" cy="198" rx="68" ry="12" fill="#25087a" opacity=".42"/>
+<rect x="40" y="42" width="180" height="150" rx="68" fill="${u('h')}"/>
+<path d="M56 108C58 72 88 52 128 50" stroke="#fff" stroke-opacity=".42" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="86" cy="64" rx="30" ry="9" fill="#fff" opacity=".22" transform="rotate(-24 86 64)"/>
+<rect x="58" y="70" width="144" height="104" rx="44" fill="${u('s')}"/><rect x="58" y="70" width="144" height="104" rx="44" fill="none" stroke="#4a39a8" stroke-width="3"/>
+<path d="M68 92Q68 78 90 76L126 76L86 162Q68 156 68 138Z" fill="#fff" opacity=".08"/>
+<g class="look"><g class="blink"><rect x="88" y="92" width="28" height="42" rx="14" fill="${u('e')}"/><rect x="88" y="92" width="28" height="42" rx="14" fill="#46e3ff" opacity=".55" filter="${u('x')}"/><circle cx="97" cy="103" r="5.5" fill="#fff"/><circle cx="108" cy="124" r="2.6" fill="#fff" opacity=".8"/></g>
+<g class="blink"><rect x="144" y="92" width="28" height="42" rx="14" fill="${u('e')}"/><rect x="144" y="92" width="28" height="42" rx="14" fill="#46e3ff" opacity=".55" filter="${u('x')}"/><circle cx="153" cy="103" r="5.5" fill="#fff"/><circle cx="164" cy="124" r="2.6" fill="#fff" opacity=".8"/></g></g>
+<ellipse cx="82" cy="148" rx="11" ry="6.5" fill="#ff4fa3" opacity=".6" filter="${u('y')}"/><ellipse cx="178" cy="148" rx="11" ry="6.5" fill="#ff4fa3" opacity=".6" filter="${u('y')}"/>
+<path d="M113 146Q130 168 147 146Z" fill="#12082e" stroke="#d9ff00" stroke-width="5" stroke-linejoin="round"/><path d="M122 156Q130 152 138 156Q130 164 122 156Z" fill="#ff4fa3"/>
+<g class="sway" style="transform-origin:94px 216px"><path d="M94 218L66 252" stroke="#a98bff" stroke-width="24" stroke-linecap="round"/><path d="M89 213L64 244" stroke="#fff" stroke-opacity=".4" stroke-width="6" stroke-linecap="round"/><circle cx="62" cy="258" r="15" fill="${u('a')}"/><circle cx="57" cy="253" r="4.5" fill="#fff" opacity=".7"/></g>
+<path d="M166 218L196 222" stroke="#a98bff" stroke-width="24" stroke-linecap="round"/>
+<g class="wv2" style="transform-origin:196px 222px"><path d="M196 222L218 176" stroke="#a98bff" stroke-width="24" stroke-linecap="round"/><path d="M193 216L212 178" stroke="#fff" stroke-opacity=".4" stroke-width="6" stroke-linecap="round"/><circle cx="222" cy="164" r="16" fill="${u('a')}"/><circle cx="217" cy="159" r="4.5" fill="#fff" opacity=".7"/></g>
+</g></svg>`};
+
+/* ---------- Jojo: little astronaut buddy ---------- */
+const jojo=()=>{const k=++PID,u=n=>`url(#${n}${k})`;return `<svg class="mas" viewBox="0 0 260 340"><defs>
+${GR('w'+k,0,[[0,'#ffffff'],[.55,'#ece6ff'],[1,'#b3a5ee']],'radial')}${GR('t'+k,[0,0,1,1],[[0,'#ffffff'],[.6,'#d8cffa'],[1,'#a597e6']])}
+${GR('v'+k,[0,0,0,1],[[0,'#3c25ad'],[.6,'#150b4f'],[1,'#07031f']])}${GR('p'+k,[0,0,1,1],[[0,'#8a4df5'],[1,'#4010b8']])}
+${GR('k'+k,[0,0,1,1],[[0,'#8d7ae8'],[1,'#5b46c4']])}${GR('i'+k,[0,0,0,1],[[0,'#d8fcff'],[.5,'#46e3ff'],[1,'#1a8fe8']])}
+${GR('l'+k,0,[[0,'#fffdb8'],[.5,'#d9ff00'],[1,'#8aa000']],'radial')}${GLOW(k)}</defs>
+<g class="hov">
+<g transform="translate(26 60)"><path class="tw" d="${STAR4}" fill="#d9ff00"/></g><g transform="translate(236 78) scale(.7)"><path class="tw" style="animation-delay:-.8s" d="${STAR4}" fill="#46e3ff"/></g><g transform="translate(20 214) scale(.6)"><path class="tw" style="animation-delay:-1.5s" d="${STAR4}" fill="#fff"/></g>
+<rect x="50" y="148" width="30" height="92" rx="15" fill="${u('k')}"/><rect x="180" y="148" width="30" height="92" rx="15" fill="${u('k')}"/><rect x="58" y="160" width="6" height="56" rx="3" fill="#fff" opacity=".3"/><rect x="188" y="160" width="6" height="56" rx="3" fill="#fff" opacity=".3"/>
+<rect x="92" y="232" width="34" height="68" rx="17" fill="${u('t')}"/><rect x="134" y="232" width="34" height="68" rx="17" fill="${u('t')}"/>
+<rect x="84" y="286" width="48" height="36" rx="17" fill="${u('p')}"/><rect x="128" y="286" width="48" height="36" rx="17" fill="${u('p')}"/><rect x="88" y="311" width="40" height="8" rx="4" fill="#d9ff00"/><rect x="132" y="311" width="40" height="8" rx="4" fill="#d9ff00"/>
+<g class="br"><rect x="76" y="150" width="108" height="112" rx="48" fill="${u('t')}"/><path d="M90 170Q82 206 94 242" stroke="#fff" stroke-opacity=".7" stroke-width="6" fill="none" stroke-linecap="round"/>
+<rect x="76" y="244" width="108" height="14" rx="7" fill="#8e7de8"/>
+<rect x="103" y="184" width="54" height="36" rx="11" fill="#4513c8"/><circle cx="118" cy="202" r="6.5" fill="#d9ff00"/><circle cx="138" cy="202" r="6.5" fill="#ffb938"/><rect x="106" y="228" width="48" height="7" rx="3.5" fill="#b299ff"/></g>
+<ellipse cx="130" cy="176" rx="58" ry="13" fill="#8e7de8"/>
+<g class="sway" style="transform-origin:88px 186px"><path d="M88 188L58 232" stroke="#d6cdf9" stroke-width="30" stroke-linecap="round"/><path d="M80 186L56 222" stroke="#fff" stroke-opacity=".6" stroke-width="7" stroke-linecap="round"/><circle cx="54" cy="242" r="18" fill="${u('p')}"/><ellipse cx="48" cy="236" rx="6" ry="4" fill="#fff" opacity=".4"/></g>
+<circle cx="130" cy="100" r="84" fill="${u('w')}"/><circle cx="130" cy="100" r="84" fill="none" stroke="#c4baf0" stroke-width="4"/>
+<circle cx="44" cy="110" r="15" fill="${u('p')}"/><circle cx="216" cy="110" r="15" fill="${u('p')}"/><circle cx="44" cy="110" r="5" fill="#d9ff00"/><circle cx="216" cy="110" r="5" fill="#d9ff00"/>
+<g class="ant" style="transform-origin:196px 44px"><path d="M196 46L208 22" stroke="#c4baf0" stroke-width="5" stroke-linecap="round"/><circle class="pulse" cx="209" cy="18" r="9" fill="#ff2e92"/><circle cx="206" cy="15" r="3" fill="#fff" opacity=".7"/></g>
+<ellipse cx="130" cy="106" rx="66" ry="54" fill="${u('v')}"/><ellipse cx="130" cy="106" rx="66" ry="54" fill="none" stroke="#cfc4f7" stroke-width="5"/>
+<circle class="tw" cx="82" cy="126" r="1.6" fill="#fff"/><circle class="tw" style="animation-delay:-1s" cx="176" cy="132" r="1.4" fill="#fff"/><circle class="tw" style="animation-delay:-2s" cx="152" cy="70" r="1.3" fill="#fff"/>
+<ellipse cx="98" cy="76" rx="24" ry="10" fill="#fff" opacity=".55" transform="rotate(-28 98 76)"/><circle cx="160" cy="70" r="4" fill="#fff" opacity=".4"/>
+<g class="look"><g class="blink"><ellipse cx="106" cy="104" rx="14" ry="17" fill="#fff"/><circle cx="106" cy="107" r="10" fill="${u('i')}"/><circle cx="106" cy="107" r="5" fill="#0b0630"/><circle cx="102" cy="102" r="3.6" fill="#fff"/></g>
+<g class="blink"><ellipse cx="154" cy="104" rx="14" ry="17" fill="#fff"/><circle cx="154" cy="107" r="10" fill="${u('i')}"/><circle cx="154" cy="107" r="5" fill="#0b0630"/><circle cx="150" cy="102" r="3.6" fill="#fff"/></g></g>
+<ellipse cx="88" cy="132" rx="11" ry="6" fill="#ff4fa3" opacity=".6" filter="${u('y')}"/><ellipse cx="172" cy="132" rx="11" ry="6" fill="#ff4fa3" opacity=".6" filter="${u('y')}"/>
+<path d="M114 134Q130 154 146 134" stroke="#d9ff00" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M64 62C80 34 112 22 140 24" stroke="#fff" stroke-opacity=".9" stroke-width="6" fill="none" stroke-linecap="round" opacity=".6"/>
+<path d="M174 188L212 206" stroke="#d6cdf9" stroke-width="30" stroke-linecap="round"/>
+<g class="wv2" style="transform-origin:212px 206px"><path d="M212 206L230 160" stroke="#d6cdf9" stroke-width="30" stroke-linecap="round"/><path d="M206 202L222 164" stroke="#fff" stroke-opacity=".6" stroke-width="7" stroke-linecap="round"/><circle cx="233" cy="146" r="18" fill="${u('l')}"/><ellipse cx="227" cy="140" rx="6" ry="4" fill="#fff" opacity=".7"/></g>
+</g></svg>`};
+
+/* ---------- Rocket ---------- */
+const rocket=()=>{const k=++PID,u=n=>`url(#${n}${k})`;return `<svg class="mas" viewBox="0 0 200 420"><defs>
+${GR('r'+k,[0,0,1,0],[[0,'#cfc6f5'],[.32,'#fff'],[.58,'#fff'],[1,'#a597dc']])}${GR('n'+k,[0,0,1,1],[[0,'#9a63f7'],[1,'#4513c0']])}
+${GR('d'+k,[0,0,1,1],[[0,'#ff7fbd'],[1,'#c9136f']])}${GR('f'+k,[0,0,0,1],[[0,'#fff6a8'],[.4,'#ffb938'],[1,'#ff2e92',0]])}
+${GR('g'+k,[0,0,0,1],[[0,'#2a1a78'],[1,'#07031f']])}${GR('m'+k,[0,0,1,1],[[0,'#f4f0ff'],[1,'#8f80e0']])}${GLOW(k)}
+<clipPath id="q${k}"><path d="M100 8C152 66 152 200 130 306H70C48 200 48 66 100 8Z"/></clipPath></defs>
+<g class="flame"><ellipse cx="100" cy="345" rx="40" ry="52" fill="#ff7a2e" opacity=".5" filter="${u('x')}"/><path d="M72 304C62 350 90 396 100 418C110 396 138 350 128 304Z" fill="${u('f')}"/><path d="M86 304C84 334 96 358 100 376C104 358 116 334 114 304Z" fill="#fff"/></g>
+<path d="M100 150C112 170 116 250 112 304H88C84 250 88 170 100 150Z" fill="${u('d')}"/>
+<path d="M62 206C28 238 26 292 34 310L76 292Z" fill="${u('d')}"/><path d="M138 206C172 238 174 292 166 310L124 292Z" fill="${u('d')}"/><path d="M60 222C42 244 40 276 44 294" stroke="#fff" stroke-opacity=".4" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M100 8C152 66 152 200 130 306H70C48 200 48 66 100 8Z" fill="${u('r')}"/>
+<g clip-path="url(#q${k})"><rect x="30" y="226" width="140" height="14" fill="#d9ff00"/><rect x="30" y="250" width="140" height="22" fill="#5800e5" opacity=".28"/></g>
+<path d="M100 8C120 30 132 56 138 84C120 70 80 70 62 84C68 56 80 30 100 8Z" fill="${u('n')}"/><path d="M84 40C90 28 96 22 100 18" stroke="#fff" stroke-opacity=".6" stroke-width="5" fill="none" stroke-linecap="round"/>
+<circle cx="100" cy="150" r="36" fill="${u('m')}"/><circle cx="100" cy="150" r="28" fill="${u('g')}"/>
+<circle class="tw" cx="82" cy="164" r="1.8" fill="#fff"/><circle class="tw" style="animation-delay:-1s" cx="118" cy="138" r="1.6" fill="#fff"/>
+<g class="blink"><circle cx="91" cy="148" r="5" fill="#46e3ff"/><circle cx="109" cy="148" r="5" fill="#46e3ff"/><circle cx="89.5" cy="146.5" r="1.7" fill="#fff"/><circle cx="107.5" cy="146.5" r="1.7" fill="#fff"/></g><path d="M93 158Q100 165 107 158" stroke="#d9ff00" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+<ellipse cx="88" cy="136" rx="10" ry="5" fill="#fff" opacity=".5" transform="rotate(-32 88 136)"/>
+<circle cx="84" cy="212" r="4.5" fill="#ff2e92"/><circle cx="100" cy="212" r="4.5" fill="#d9ff00"/><circle cx="116" cy="212" r="4.5" fill="#ffb938"/>
+<path d="M68 306h64l-8 16H76z" fill="${u('m')}"/><rect x="76" y="318" width="48" height="6" rx="3" fill="#5b46c4"/></svg>`};
+
+/* ---------- Knight (reads well at 64px and at 400px) ---------- */
+const knight=()=>{const k=++PID,u=n=>`url(#${n}${k})`;return `<svg class="mas" viewBox="0 0 100 100"><defs>
+${GR('a'+k,[0,0,1,1],[[0,'#f4f8fc'],[.55,'#c4d0dd'],[1,'#8c9db2']])}${GR('c'+k,[0,0,1,1],[[0,'#4f86ff'],[1,'#1c3fc0']])}${GR('h'+k,0,[[0,'#ffffff'],[.55,'#d7e0ea'],[1,'#8fa0b5']],'radial')}
+${GR('s'+k,[0,0,1,1],[[0,'#3f7bff'],[1,'#1a38b8']])}${GR('g'+k,[0,0,1,1],[[0,'#ffe27a'],[1,'#e08a00']])}</defs>
+<ellipse cx="50" cy="95" rx="25" ry="4" fill="#000" opacity=".3"/>
+<g class="kb">
+<path class="cape" style="transform-origin:34px 52px" d="M32 52Q8 66 12 94L44 86Z" fill="${u('c')}"/>
+<rect x="36" y="76" width="12" height="16" rx="5" fill="#8c9db2"/><rect x="52" y="76" width="12" height="16" rx="5" fill="#8c9db2"/><rect x="33" y="86" width="17" height="9" rx="4.5" fill="#34425e"/><rect x="50" y="86" width="17" height="9" rx="4.5" fill="#34425e"/>
+<rect x="29" y="48" width="42" height="36" rx="15" fill="${u('a')}"/><path d="M36 54Q32 66 37 78" stroke="#fff" stroke-opacity=".7" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M50 56l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z" fill="${u('g')}"/>
+<rect x="30" y="73" width="40" height="6" rx="3" fill="${u('g')}"/>
+<g transform="rotate(24 77 68)"><rect x="74" y="34" width="6" height="36" rx="3" fill="#fff"/><rect x="75.4" y="36" width="1.8" height="30" rx=".9" fill="#aebccd"/><rect x="68" y="68" width="18" height="5.5" rx="2.7" fill="${u('g')}"/><rect x="74" y="72" width="6" height="10" rx="3" fill="#8a4a1a"/></g>
+<circle cx="76" cy="70" r="6" fill="#8c9db2"/>
+<path d="M17 56H35V72Q35 83 26 87Q17 83 17 72Z" fill="${u('s')}" stroke="#e6edf5" stroke-width="2.4" stroke-linejoin="round"/><path d="M26 62l1.8 3.8 4.1.6-3 2.9.7 4.1-3.6-1.9-3.6 1.9.7-4.1-3-2.9 4.1-.6z" fill="#d9ff00"/>
+<circle cx="50" cy="36" r="24" fill="${u('h')}"/><path d="M33 26Q40 15 52 14" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/>
+<rect x="31" y="29" width="38" height="16" rx="8" fill="#0f1830"/><g class="blink"><ellipse cx="42" cy="37" rx="3.6" ry="4.6" fill="#46e3ff"/><ellipse cx="58" cy="37" rx="3.6" ry="4.6" fill="#46e3ff"/><circle cx="40.8" cy="35.4" r="1.2" fill="#fff"/><circle cx="56.8" cy="35.4" r="1.2" fill="#fff"/></g>
+<path class="plume" style="transform-origin:50px 16px" d="M50 14Q60 -4 80 6Q66 8 60 20Z" fill="#ff2e57"/><path class="plume" style="transform-origin:50px 16px" d="M52 13Q62 0 74 4Q64 8 58 14Z" fill="#ff7a96"/>
+</g></svg>`};
+
+/* ---------- Goal flag ---------- */
+const flagS=()=>{const k=++PID;return `<svg class="mas" viewBox="0 0 100 100"><defs>${GR('p'+k,[0,0,1,1],[[0,'#ff6b8a'],[1,'#d4123f']])}${GR('b'+k,0,[[0,'#fff3a8'],[.6,'#ffc22e'],[1,'#c78400']],'radial')}</defs>
+<ellipse cx="35" cy="88" rx="20" ry="5" fill="#000" opacity=".3"/><rect x="32" y="14" width="6" height="74" rx="3" fill="#f0ecff"/><rect x="33.2" y="16" width="1.8" height="70" rx=".9" fill="#fff"/>
+<circle cx="35" cy="13" r="6.5" fill="url(#b${k})"/>
+<g class="fw"><path d="M38 19C52 12 62 25 82 18V52C62 59 52 46 38 52Z" fill="url(#p${k})"/><path d="M38 19C52 12 62 25 82 18" stroke="#fff" stroke-opacity=".5" stroke-width="2" fill="none"/><g transform="translate(58 36) scale(.5)"><path d="M0 -14L4 -4 15 -4 6 3 9 14 0 8 -9 14 -6 3 -15 -4 -4 -4Z" fill="#fff"/></g></g></svg>`};
+
 const globe=()=>`<svg viewBox="0 0 400 400" class="mas"><defs><radialGradient id="gg" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#7fe6ff"/><stop offset=".6" stop-color="#3c7cf0"/><stop offset="1" stop-color="#2a1a9a"/></radialGradient></defs>
 <circle cx="200" cy="200" r="170" fill="url(#gg)"/><path d="M120 130q30-34 62-6t8 52q-34 18-62-4z" fill="#9dffb0" opacity=".6"/><path d="M230 220q34-16 56 14t-8 52q-36 8-54-22z" fill="#9dffb0" opacity=".6"/><path d="M250 110q22-12 40 8t-6 28q-26 4-34-16z" fill="#9dffb0" opacity=".55"/>
 <g fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3"><ellipse cx="200" cy="200" rx="170" ry="60"/><ellipse cx="200" cy="200" rx="90" ry="170"/><line x1="200" y1="30" x2="200" y2="370"/></g>
@@ -607,5 +690,3 @@ addEventListener('keydown',e=>{if(e.target.isContentEditable||e.target.tagName==
  sel.onchange=()=>build(sel.value);let id=(location.hash||'').slice(1);if(!CATS[id])id=Object.keys(CATS)[0];sel.value=id;
  fit();build(id);wake()})();
 </script>
-
-</body></html>
