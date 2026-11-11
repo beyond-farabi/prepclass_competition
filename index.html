@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Prep Class Quest</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
@@ -238,6 +239,52 @@ button,select{font-family:var(--body)}
 .th .slide{width:1920px;height:1080px;transform:scale(var(--ts,.13));transform-origin:0 0;pointer-events:none}
 .th .slide *{animation:none!important}
 .th span{position:absolute;left:8px;bottom:6px;background:rgba(0,0,0,.7);color:#fff;font:800 13px var(--body);padding:2px 8px;border-radius:8px;z-index:3}
+/* v4: flip cards (slide 6) + prize slide */
+.fcs{position:absolute;left:96px;right:96px;top:330px;display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+.fc{height:540px;perspective:1600px;cursor:pointer}
+.fci{position:relative;width:100%;height:100%;transition:transform .85s cubic-bezier(.3,1.25,.4,1);transform-style:preserve-3d}
+.fc.open .fci{transform:rotateY(180deg)}
+.fc:not(.open):hover .fci{transform:rotateY(-10deg) scale(1.025)}
+.fcf,.fcb{position:absolute;inset:0;border-radius:52px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.fcf{background:linear-gradient(155deg,#7a35ff,#3a0fa8);border:3px solid rgba(255,255,255,.3);box-shadow:0 24px 60px rgba(0,0,0,.38),inset 0 0 90px rgba(255,255,255,.1)}
+.fcf b{font:700 290px/1 var(--display);color:var(--lime);animation:qb 1.7s ease-in-out infinite;text-shadow:0 10px 0 rgba(0,0,0,.25)}
+@keyframes qb{50%{transform:translateY(-20px) rotate(-5deg)}}
+.fcf span{font:600 46px/1.2 var(--display);color:#fff;padding:0 34px}
+.fcf em{font:700 32px var(--body);font-style:normal;color:#1b1030;background:var(--lime);padding:10px 30px;border-radius:999px;margin-top:26px;animation:pu 1.6s ease-in-out infinite}
+.fcb{transform:rotateY(180deg);background:linear-gradient(160deg,#2a1068,#120a33);border:3px solid var(--lime);box-shadow:0 0 70px rgba(217,255,0,.25)}
+.fi{width:200px;height:200px;display:block;overflow:visible}
+.fn{display:block;font-family:var(--display);font-weight:700;line-height:.98;color:var(--lime);margin-top:4px}
+.fn i{font-style:normal}
+.fcb span{font:600 46px/1.15 var(--display);color:#fff;padding:0 30px;margin-top:6px}
+.fnote{position:absolute;right:96px;top:896px;font:600 46px var(--display);color:var(--lime);opacity:0;transform:translateY(20px);transition:all .6s .3s}
+.slide.fdone .fnote{opacity:1;transform:none}
+.fpl{display:flex;gap:44px;font:700 40px var(--display);color:var(--lime)}
+.gd{fill:#4a3a9a;transform-box:fill-box;transform-origin:center;animation:gdp 3.4s ease-in-out infinite}@keyframes gdp{0%,100%{fill:#4a3a9a;transform:scale(.75)}10%,62%{fill:#d9ff00;transform:scale(1)}}
+.bg{opacity:.1;animation:bgl 2.4s ease-in-out infinite}@keyframes bgl{0%,100%{opacity:.08}30%,62%{opacity:.85}}
+.clr{stroke-dasharray:503;animation:clr 6s linear infinite}@keyframes clr{from{stroke-dashoffset:503}to{stroke-dashoffset:0}}
+.clh{transform-box:view-box;transform-origin:100px 100px;animation:clh 6s linear infinite}@keyframes clh{to{transform:rotate(360deg)}}
+.vp{transform-box:fill-box;transform-origin:0 50%;animation:vpp 3.2s ease-in-out infinite}@keyframes vpp{0%{transform:scaleX(.04)}85%,100%{transform:scaleX(1)}}
+.cdl{transform-box:fill-box;transform-origin:center;animation:cdl 1.2s ease-in-out infinite}@keyframes cdl{50%{transform:scale(1.35)}}
+.pz{cursor:pointer;animation:drop .85s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes drop{from{opacity:0;transform:translateY(-420px) scale(.8)}to{opacity:1;transform:none}}
+.pz.bump{animation:bmp .6s ease both}@keyframes bmp{30%{transform:translateY(-34px) scale(1.12) rotate(-4deg)}60%{transform:scale(.96)}100%{transform:none}}
+.pzi{width:200px;margin:0 auto;animation:fl 4s ease-in-out infinite}
+.pzimg{display:block;width:100%;height:200px;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(0,0,0,.4))}
+.pn{font:600 36px/1.1 var(--display);color:#fff;text-align:center;white-space:nowrap}
+.ped{border-radius:30px 30px 0 0;display:flex;align-items:flex-start;justify-content:center;transform-origin:50% 100%;animation:rise .8s cubic-bezier(.3,1.3,.5,1) both;box-shadow:inset 0 6px 0 rgba(255,255,255,.4),0 20px 50px rgba(0,0,0,.3)}
+.ped b{font-family:var(--display);font-weight:700;line-height:1.15;color:rgba(30,10,60,.38);text-shadow:0 2px 0 rgba(255,255,255,.35)}
+.ped.g{background:linear-gradient(180deg,#ffe27a,#e0970a)}.ped.s{background:linear-gradient(180deg,#f7f9ff,#97a3bc)}.ped.b{background:linear-gradient(180deg,#f4b985,#b0662c)}.ped.p{background:linear-gradient(180deg,#9a63f7,#4513c0)}.ped.p b{color:rgba(255,255,255,.6)}
+@keyframes rise{from{transform:scaleY(0)}to{transform:none}}
+.hero{padding-top:36px;border-radius:56px;background:linear-gradient(160deg,#3d15ad,#150a40);border:3px solid var(--lime);box-shadow:0 0 90px rgba(217,255,0,.22);overflow:hidden;display:flex;flex-direction:column;align-items:center;padding-top:44px}
+.hero::after{content:"";position:absolute;top:-20%;bottom:-20%;width:90px;left:-30%;background:rgba(255,255,255,.14);transform:skewX(-18deg);animation:shn 4.5s ease-in-out 1.8s infinite;pointer-events:none}
+@keyframes shn{0%{left:-30%}35%,100%{left:130%}}
+.hz{position:relative;width:400px;height:300px;margin-top:6px}.hz .pzi{width:400px;margin-top:-46px}
+.hn2{font:700 66px/1.05 var(--display);color:var(--lime);margin-top:18px;text-align:center}
+.hs{font:700 40px var(--body);color:#fff;margin-top:8px;opacity:.9}
+.pl2{display:inline-flex;align-items:center;gap:16px;font:700 36px var(--display);color:#fff;background:rgba(255,255,255,.1);border:2px solid var(--cardb);padding:12px 32px 12px 22px;border-radius:999px;white-space:nowrap}
+.pl2 svg{color:var(--lime);flex:none}
+.rgb{animation:rgbc 3s linear infinite}@keyframes rgbc{to{filter:hue-rotate(360deg)}}
+.cbw{animation:cbw 3s ease-in-out infinite;transform-box:view-box;transform-origin:120px 124px}@keyframes cbw{50%{transform:rotate(7deg)}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 
@@ -421,6 +468,46 @@ const arrow=d=>`<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" 
 const findCh=(g,ch)=>{for(let r=0;r<g.length;r++){const c=g[r].indexOf(ch);if(c>=0)return[r,c]}return[0,0]};
 const bfs=g=>{const s=findCh(g,'S'),f=findCh(g,'F'),seen={},q=[[s[0],s[1],0]];seen[s]=1;const D=[[0,1],[0,-1],[1,0],[-1,0]];while(q.length){const[r,c,n]=q.shift();if(r===f[0]&&c===f[1])return n;for(const d of D){const a=r+d[0],b=c+d[1];if(g[a]&&g[a][b]&&g[a][b]!=='#'&&!seen[[a,b]]){seen[[a,b]]=1;q.push([a,b,n+1])}}}return 0};
 const boardHTML=(g,cs,gap)=>{const st=cs+gap,Cn=Math.max(...g.map(r=>r.length));let h='';g.forEach((row,r)=>[...row].forEach((ch,c)=>{if(ch==='#')return;h+=`<div class="gcell" style="left:${30+c*st}px;top:${30+r*st}px;width:${cs}px;height:${cs}px;border-radius:${cs*.25}px"></div>`;if(ch==='F')h+=`<div class="abs" style="left:${30+c*st}px;top:${30+r*st}px;width:${cs}px;height:${cs}px">${flagS()}</div>`}));return{w:Cn*st-gap+60,h:g.length*st-gap+60,html:h,st}};
+/* ===== v4: animated format icons (slide 6) + prize illustrations (prize slide) ===== */
+const FIA={
+grid:()=>`<svg class="fi" viewBox="0 0 200 200">${Array.from({length:20},(_,i)=>`<circle class="gd" style="animation-delay:${(i*.11).toFixed(2)}s" cx="${28+(i%5)*36}" cy="${38+Math.floor(i/5)*40}" r="13"/>`).join('')}</svg>`,
+bulbs:()=>{const k=++PID;return `<svg class="fi" viewBox="0 0 200 200"><defs><filter id="x${k}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="9"/></filter></defs>${[0,1,2].map(i=>`<g transform="translate(${4+i*66} 52) scale(.98)"><circle class="bg" style="animation-delay:${i*.55}s" cx="32" cy="26" r="40" fill="#d9ff00" filter="url(#x${k})"/><g fill="none" stroke="#d9ff00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">${IC.bulb}</g></g>`).join('')}</svg>`},
+clock:()=>`<svg class="fi" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="12"/><circle class="clr" cx="100" cy="100" r="80" fill="none" stroke="#d9ff00" stroke-width="12" stroke-linecap="round" transform="rotate(-90 100 100)"/>${Array.from({length:12},(_,i)=>`<line x1="100" y1="34" x2="100" y2="${i%3?40:46}" stroke="#fff" stroke-opacity=".7" stroke-width="4" stroke-linecap="round" transform="rotate(${i*30} 100 100)"/>`).join('')}<line class="clh" x1="100" y1="100" x2="100" y2="54" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="100" cy="100" r="9" fill="#d9ff00"/></svg>`,
+video:()=>{const k=++PID;return `<svg class="fi" viewBox="0 0 200 200"><defs><linearGradient id="v${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a35ff"/><stop offset="1" stop-color="#1fb7ff"/></linearGradient></defs><rect x="16" y="34" width="168" height="112" rx="20" fill="url(#v${k})" stroke="#fff" stroke-opacity=".4" stroke-width="3"/><path class="pulse" d="M84 66L132 90L84 114Z" fill="#fff"/><circle class="pulse" cx="38" cy="54" r="6" fill="#ff2e92"/><rect x="30" y="128" width="140" height="8" rx="4" fill="#fff" opacity=".28"/><rect class="vp" x="30" y="128" width="140" height="8" rx="4" fill="#d9ff00"/><rect x="82" y="148" width="36" height="14" rx="4" fill="#cdb0ff"/><rect x="62" y="160" width="76" height="10" rx="5" fill="#cdb0ff"/></svg>`},
+cal:()=>`<svg class="fi" viewBox="0 0 200 200"><rect x="22" y="34" width="156" height="146" rx="24" fill="#fff"/><rect x="22" y="34" width="156" height="48" rx="24" fill="#ff2e92"/><rect x="22" y="60" width="156" height="22" fill="#ff2e92"/><rect x="54" y="18" width="14" height="34" rx="7" fill="#1b1030"/><rect x="132" y="18" width="14" height="34" rx="7" fill="#1b1030"/>${Array.from({length:15},(_,i)=>{const last=i===13;return `<rect ${last?'class="cdl"':''} x="${38+(i%5)*28}" y="${96+Math.floor(i/5)*26}" width="20" height="18" rx="5" fill="${last?'#d9ff00':'#e6e0ff'}"/>`}).join('')}</svg>`,
+game:()=>{const k=++PID;return `<svg class="fi" viewBox="0 0 200 200"><defs><linearGradient id="g${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9a63f7"/><stop offset="1" stop-color="#4513c0"/></linearGradient></defs><g class="kb"><path d="M100 14l7 14 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z" fill="#d9ff00" transform="translate(0 4)"/></g><path d="M48 76C22 76 8 124 20 152 28 172 50 170 62 152L76 136H124L138 152C150 170 172 172 180 152 192 124 178 76 152 76Z" fill="url(#g${k})" stroke="#cdb0ff" stroke-width="4" stroke-linejoin="round"/><rect x="52" y="104" width="30" height="12" rx="4" fill="#fff"/><rect x="61" y="95" width="12" height="30" rx="4" fill="#fff"/><circle class="pulse" cx="140" cy="100" r="9" fill="#ff2e92"/><circle class="pulse" style="animation-delay:-.4s" cx="158" cy="116" r="9" fill="#46e3ff"/><circle class="pulse" style="animation-delay:-.8s" cx="122" cy="116" r="9" fill="#d9ff00"/></svg>`}
+};
+
+/* ---- prize art (generic, unbranded; real photos can replace via c.prizes.img) ---- */
+const pzTablet=()=>{const k=++PID;return `<svg class="mas" viewBox="0 0 240 240"><defs><linearGradient id="a${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#454b78"/><stop offset="1" stop-color="#0e1124"/></linearGradient><linearGradient id="b${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a1fff"/><stop offset=".55" stop-color="#2a1aa8"/><stop offset="1" stop-color="#26c6ff"/></linearGradient></defs>
+<ellipse cx="120" cy="214" rx="88" ry="10" fill="#000" opacity=".3"/><rect x="8" y="40" width="224" height="158" rx="26" fill="url(#a${k})"/><rect x="8" y="40" width="224" height="158" rx="26" fill="none" stroke="#9aa0d8" stroke-opacity=".55" stroke-width="2.4"/>
+<rect x="22" y="54" width="196" height="130" rx="13" fill="url(#b${k})"/><circle cx="15" cy="119" r="2.6" fill="#7a82b8"/>
+<g transform="translate(120 100)"><path class="pulse" d="M0 -26L8 -8 27 -7 12 6 17 26 0 15 -17 26 -12 6 -27 -7 -8 -8Z" fill="#d9ff00"/></g>
+<rect x="56" y="148" width="26" height="26" rx="8" fill="#ff2e92"/><rect x="92" y="148" width="26" height="26" rx="8" fill="#46e3ff"/><rect x="128" y="148" width="26" height="26" rx="8" fill="#d9ff00"/><rect x="164" y="148" width="26" height="26" rx="8" fill="#ff8a2e"/>
+<path d="M22 66Q22 54 34 54H124L62 184H34Q22 184 22 172Z" fill="#fff" opacity=".12"/></svg>`};
+const pzBand=()=>{const k=++PID;return `<svg class="mas" viewBox="0 0 240 240"><defs><linearGradient id="a${k}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2c3157"/><stop offset=".5" stop-color="#454c82"/><stop offset="1" stop-color="#1a1e3c"/></linearGradient><linearGradient id="b${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e4e7ff"/><stop offset="1" stop-color="#7a80b4"/></linearGradient></defs>
+<rect x="88" y="2" width="64" height="236" rx="26" fill="url(#a${k})"/>${[198,212,226].map(y=>`<circle cx="120" cy="${y}" r="3.2" fill="#0d1030"/>`).join('')}
+<rect x="62" y="60" width="116" height="126" rx="40" fill="url(#b${k})"/><rect x="178" y="98" width="9" height="30" rx="4.5" fill="#9aa0d8"/><rect x="71" y="70" width="98" height="106" rx="32" fill="#05030f"/>
+<text x="120" y="112" text-anchor="middle" style="font:700 32px var(--display)" fill="#d9ff00">09:41</text>
+<path class="pulse" d="M120 160C95 144 100 126 112 126 117 126 120 130 120 133 120 130 123 126 128 126 140 126 145 144 120 160Z" fill="#ff2e92"/>
+<rect x="92" y="164" width="56" height="5" rx="2.5" fill="#fff" opacity=".18"/><rect class="vp" x="92" y="164" width="56" height="5" rx="2.5" fill="#46e3ff"/></svg>`};
+const pzMouse=()=>{const k=++PID;return `<svg class="mas" viewBox="0 0 240 240"><defs><linearGradient id="a${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a5080"/><stop offset="1" stop-color="#0d1028"/></linearGradient></defs>
+<ellipse cx="120" cy="230" rx="62" ry="7" fill="#000" opacity=".3"/>
+<path d="M120 14C168 14 190 56 190 112V158C190 206 164 228 120 228 76 228 50 206 50 158V112C50 56 72 14 120 14Z" fill="url(#a${k})" stroke="#9aa0d8" stroke-opacity=".5" stroke-width="2.4"/>
+<path d="M120 16V104M52 106H188" stroke="#05030f" stroke-width="4" stroke-linecap="round"/><rect x="110" y="48" width="20" height="40" rx="10" fill="#d9ff00"/><rect x="110" y="48" width="20" height="40" rx="10" fill="none" stroke="#05030f" stroke-width="3"/>
+<g class="rgb"><path d="M62 150C62 196 82 218 120 218 158 218 178 196 178 150" fill="none" stroke="#ff2e92" stroke-width="7" stroke-linecap="round"/><circle cx="120" cy="156" r="16" fill="none" stroke="#46e3ff" stroke-width="6"/></g></svg>`};
+const pzBuds=()=>{const k=++PID;return `<svg class="mas" viewBox="0 0 240 240"><defs><linearGradient id="a${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#bfb4ef"/></linearGradient><linearGradient id="b${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5c4ad0"/><stop offset="1" stop-color="#241868"/></linearGradient></defs>
+<ellipse cx="120" cy="226" rx="82" ry="8" fill="#000" opacity=".3"/>
+<path class="pulse" d="M26 58Q16 70 26 82M38 50Q24 70 38 90" fill="none" stroke="#d9ff00" stroke-width="5" stroke-linecap="round"/><path class="pulse" style="animation-delay:-.6s" d="M214 58Q224 70 214 82M202 50Q216 70 202 90" fill="none" stroke="#d9ff00" stroke-width="5" stroke-linecap="round"/>
+<rect x="88" y="84" width="16" height="70" rx="8" fill="url(#a${k})"/><rect x="136" y="84" width="16" height="70" rx="8" fill="url(#a${k})"/>
+<ellipse cx="80" cy="68" rx="28" ry="32" fill="url(#a${k})"/><ellipse cx="160" cy="68" rx="28" ry="32" fill="url(#a${k})"/><circle cx="74" cy="68" r="11" fill="url(#b${k})"/><circle cx="166" cy="68" r="11" fill="url(#b${k})"/><ellipse cx="68" cy="52" rx="9" ry="5" fill="#fff" opacity=".8" transform="rotate(-30 68 52)"/><ellipse cx="172" cy="52" rx="9" ry="5" fill="#fff" opacity=".8" transform="rotate(30 172 52)"/>
+<rect x="40" y="136" width="160" height="84" rx="42" fill="url(#a${k})"/><path d="M54 164H186" stroke="#a79ae0" stroke-width="3" opacity=".8"/><circle class="pulse" cx="120" cy="196" r="6" fill="#46e3ff"/></svg>`};
+const pzCube=()=>{const f=(m,cols,sh)=>`<g transform="matrix(${m})"><rect width="90" height="90" rx="7" fill="#10122a"/>${cols.map((c,i)=>`<rect x="${(i%3)*30+2.5}" y="${Math.floor(i/3)*30+2.5}" width="25" height="25" rx="5" fill="${c}"/>`).join('')}<rect width="90" height="90" rx="7" fill="#000" opacity="${sh}"/></g>`;
+ const L='#d9ff00',W='#ffffff',C='#2fd0ff',P='#ff2e92',O='#ff8a2e',V='#8a4df5';
+ return `<svg class="mas" viewBox="0 0 240 240"><ellipse cx="120" cy="226" rx="72" ry="8" fill="#000" opacity=".3"/><g class="cbw">${f('.866 -.5 .866 .5 42 79',[L,W,C,P,L,O,C,W,L],0)}${f('.866 .5 0 1 42 79',[P,O,W,V,C,L,O,P,W],.2)}${f('.866 -.5 0 1 120 124',[C,L,P,W,O,V,L,C,P],.38)}</g></svg>`};
+const pzCrown=()=>{const k=++PID;return `<svg class="mas" viewBox="0 0 120 80"><defs><linearGradient id="c${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3a8"/><stop offset=".5" stop-color="#ffc22e"/><stop offset="1" stop-color="#d98800"/></linearGradient></defs><path d="M10 70L4 22L34 44L60 8L86 44L116 22L110 70Z" fill="url(#c${k})" stroke="#fff3a8" stroke-width="2.5" stroke-linejoin="round"/><circle cx="4" cy="20" r="6" fill="#fff3a8"/><circle cx="60" cy="8" r="7" fill="#fff3a8"/><circle cx="116" cy="20" r="6" fill="#fff3a8"/><rect x="14" y="58" width="92" height="9" rx="4" fill="#fff" opacity=".5"/></svg>`};
+const PZART={tablet:pzTablet,band:pzBand,mouse:pzMouse,buds:pzBuds,cube:pzCube};
+const pzArt=(c,key)=>{const u=c.prizes.img&&c.prizes.img[key];return u?`<img class="pzimg" src="${esc(u)}" alt="">`:PZART[key]()};
 
 const DP=[[110,150,110],[1700,170,90],[1620,880,130],[70,900,100],[880,40,80],[1180,960,90]];
 const deco=c=>`<div class="deco">${DP.map((p,i)=>`<span style="left:${p[0]}px;top:${p[1]}px;font-size:${p[2]}px;animation-delay:${-i*1.1}s">${esc(c.sym[i%c.sym.length])}</span>`).join('')}</div>`;
@@ -458,10 +545,13 @@ const planetS=c=>({q:1,edit:true,notes:'[2 mnt] Tunjukkan divisi/kategori anak. 
 <p ${A(2,'sub')} style="color:#fff;font:600 66px/1.1 var(--display)">${esc(c.name)}</p>
 <p ${A(3,'sub')} style="margin:12px 0 40px">${esc(c.grade)}</p>
 <div ${A(4)}>${c.divs.map(d=>`<span class="dv ${d[0]===c.name?'me':''}">${esc(d[0])} · ${esc(d[1])}</span>`).join('')}</div></div>`});
-const format=c=>({q:1,edit:true,notes:'[2 mnt] Tiga angka saja. Biarkan anak menebak dulu: "Menurutmu berapa soalnya?"',html:`${deco(c)}
+const format=c=>({q:1,edit:true,notes:'[2–3 mnt] Tebak dulu, baru buka! Tanya: "Menurutmu berapa soalnya?" Anak jawab di chat. Ketuk kartu atau tekan → untuk membuka satu per satu. Setelah tiga kartu terbuka, tekan → sekali lagi untuk lanjut.',html:`${deco(c)}
 <div class="abs" style="left:96px;top:130px;right:96px"><h1 ${A(0,'title')}>${esc(c.formatTitle)}</h1></div>
-<div class="abs" style="left:96px;right:96px;top:360px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px">${c.format.map((f,i)=>`<div ${A(1+i,'tile card')}><b style="font-size:${f[0].length>3?150:210}px">${esc(f[0])}</b><span>${esc(f[1])}</span></div>`).join('')}</div>
-<div ${A(5,'abs')} style="left:96px;right:96px;top:890px;display:flex;gap:50px;font:700 48px var(--display);color:var(--lime)"><span>Gratis</span><span>100% online</span><span>Dari rumah</span></div>`});
+<div class="abs" style="right:96px;top:176px"><span ${A(1,'chip')}>Tebak dulu, lalu ketuk kartunya!</span></div>
+<div class="fcs">${c.format.map((f,i)=>{const n=String(f[0]),num=/^\d+$/.test(n),fs=n.length>3?118:n.length>2?160:200,cw=(1728-88)/3,x=96+i*(cw+44)+cw/2;
+ return `<div ${A(2+i,'fc')} data-x="${Math.round(x)}" data-y="600"><div class="fci"><div class="fcf"><b>?</b><span>${esc(f[3]||'Berapa ya?')}</span><em>Ketuk kartu</em></div><div class="fcb">${FIA[f[2]||'grid']()}<b class="fn" style="font-size:${fs}px">${num?`<i class="cu" data-to="${n}">0</i>`:esc(n)}</b><span style="font-size:${f[1].length>16?38:46}px">${esc(f[1])}</span></div></div></div>`}).join('')}</div>
+<div ${A(6,'abs fpl')} style="left:96px;top:900px"><span>Gratis</span><span>100% online</span><span>Dari rumah</span></div>
+<div class="fnote">${esc(c.formatNote||'Kamu pasti bisa!')}</div>`});
 const win=c=>({q:1,edit:true,notes:'[2 mnt] Siapa yang lolos ke final dan apa yang didapat semua peserta. Tekankan: semua peserta dapat sertifikat dan laporan.',html:`${deco(c)}
 <div class="abs float" style="left:130px;top:230px;color:var(--lime)">${icon('trophy',520)}</div>
 <div class="abs" style="left:800px;top:190px;width:1020px"><h1 ${A(0,'title')} style="font-size:200px;color:var(--lime)">${esc(c.win.big)}</h1><p ${A(1,'sub')} style="color:#fff;font:600 62px/1.15 var(--display)">${esc(c.win.small)}</p>
@@ -555,7 +645,23 @@ const pClose=c=>P({tag:'Sampai jumpa',notes:'[±6 mnt] Tanya jawab. Ucapkan teri
 <div class="abs" style="left:96px;top:230px;width:1100px"><h1 ${A(0,'pt')} style="font-size:130px">Terima kasih, <em>Mama & Papa</em>!</h1><p ${A(1,'ps')} style="margin-top:34px">Ada pertanyaan? Tanya langsung atau lewat WhatsApp.</p><p ${A(2,'ps')} style="margin-top:20px;font-size:36px">${esc(c.trial.contact)}</p></div>
 <div class="abs" style="left:1130px;top:790px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle at 40% 18%,#b299ff,#5800e5 62%,#2a0f7a)"></div>
 <div class="abs float" style="left:1280px;top:470px;width:250px">${jojo()}</div><div class="abs float" style="left:1580px;top:560px;width:190px;animation-delay:-2s">${algobot()}</div>`});
-const buildSlides=c=>{const L=[cover,map,tutor,ice,planetS,format,win,simIntro];c.sim.forEach((z,i)=>L.push(z.grid?game(i):quiz(i)));c.tips.forEach((_,i)=>L.push(tip(i)));
+const prizes=c=>{const P=c.prizes,ord=[1,0,2,3].map(i=>P.podium[i]).filter(Boolean),H={1:240,2:190,3:150,4:110},DL={4:.5,3:.7,2:.95,1:1.3},CL={1:'g',2:'s',3:'b',4:'p'},W=258,G=24,X0=720;
+ const cols=ord.map((p,k)=>{const x=X0+k*(W+G),h=H[p.rank],t=900-h,d=DL[p.rank];
+  return `${p.rank===1?`<div class="abs float" style="left:${x+W/2-60}px;top:${t-330}px;width:120px"><div class="pop" style="animation-delay:${d+.8}s">${pzCrown()}</div></div>`:''}
+<div class="abs pz" data-x="${x+W/2}" data-y="${t-160}" style="left:${x}px;top:${t-262}px;width:${W}px;height:200px;animation-delay:${d+.35}s"><div class="pzi" style="animation-delay:${-k*.7}s">${pzArt(c,p.item)}</div></div>
+<div class="abs pn pop" style="left:${x}px;top:${t-54}px;width:${W}px;animation-delay:${d+.6}s">${esc(p.name)}</div>
+<div class="abs ped ${CL[p.rank]}" style="left:${x}px;top:${t}px;width:${W}px;height:${h}px;animation-delay:${d}s"><b style="font-size:${p.rank===1?130:p.rank===4?80:110}px">${p.rank}</b></div>`}).join('');
+ const spk=[[70,170,1,'#d9ff00',0],[500,210,.8,'#46e3ff',-.8],[90,430,.6,'#fff',-1.5],[490,420,.9,'#d9ff00',-.4]].map(q=>`<g transform="translate(${q[0]} ${q[1]}) scale(${q[2]})"><path class="tw" style="animation-delay:${q[4]}s" d="${STAR4}" fill="${q[3]}"/></g>`).join('');
+ return{q:1,notes:'[2 mnt] Bangkitkan semangat! Tanya dulu: "Siapa yang mau bawa pulang hadiah ini?" Ketuk hadiahnya satu per satu: tablet dulu (Best Overall), lalu juara 1, 2, 3, dan 4. Tekankan: peserta dari luar Algonova punya podium sendiri, dan semua peserta dapat e-sertifikat. Jangan sebut harga.',html:`${deco(c)}
+<div class="abs" style="left:96px;top:130px;right:96px"><h1 ${A(0,'title')}>${esc(P.title||'Hadiah juara')}</h1></div>
+<div class="abs" style="right:96px;top:176px"><span ${A(1,'chip')}>${esc(P.community)}</span></div>
+<p ${A(2,'sub')} style="position:absolute;left:96px;top:256px">Ketuk hadiahnya, siapa yang mau bawa pulang?</p>
+<div class="abs hero pop" style="left:96px;top:330px;width:560px;height:600px;animation-delay:.3s"><span class="chip">${esc(P.best.tag)}</span>
+<div class="pz hz" data-x="376" data-y="560" style="animation-delay:.9s"><div class="pzi">${pzArt(c,P.best.item)}</div></div><b class="hn2">${esc(P.best.name)}</b><span class="hs">Hadiah utama</span>
+<svg viewBox="0 0 560 600" style="position:absolute;left:0;top:0;width:560px;height:600px;pointer-events:none">${spk}</svg></div>
+${cols}
+<div class="abs" style="left:96px;right:96px;top:952px;display:flex;gap:26px">${P.extras.map((x,i)=>`<span class="pl2 pop" style="animation-delay:${1.9+i*.15}s">${icon(x[0],44)}${esc(x[1])}</span>`).join('')}</div>`}};
+const buildSlides=c=>{const L=[cover,map,tutor,ice,planetS,format,win,prizes,simIntro];c.sim.forEach((z,i)=>L.push(z.grid?game(i):quiz(i)));c.tips.forEach((_,i)=>L.push(tip(i)));
  L.push(next,hero,launch,pIntro,pAbout,pTrust,pWhy,c.parent==='trial'?pPlatform:pDiag,pJourney,pTrial,pClose);return L};
 
 
@@ -565,11 +671,16 @@ const buildSlides=c=>{const L=[cover,map,tutor,ice,planetS,format,win,simIntro];
 const MBC_DIVS=[['Number Ninjas Junior','TK A/B – kelas 3'],['Number Ninjas Rising','Kelas 4–6'],['Logic Legends Challenger','Kelas 7–9'],['Logic Legends Grandmaster','Kelas 10–12']];
 const ALGO_DIVS=[['Little Story Coders','TK – kelas 5'],['Game Makers','Kelas 6–8'],['Future Innovators','Kelas 9 – SMA']];
 const TESTI=[{q:'[Testimoni orang tua · isi dari Marketing]',who:'Nama depan, kota'},{q:'[Testimoni orang tua · isi dari Marketing]',who:'Nama depan, kota'},{q:'[Testimoni orang tua · isi dari Marketing]',who:'Nama depan, kota'}];
+/* HADIAH (sesuai Option 3 yang disetujui). Tanpa harga di slide. Foto asli: isi img.<kunci> dengan URL atau data:image; kosong = ilustrasi */
+const PRIZES=(tag)=>({title:'Hadiah juara',community:'Peserta umum punya podium sendiri',best:{item:'tablet',name:'Tablet Android',tag},
+ podium:[{rank:1,item:'band',name:'Smart band'},{rank:2,item:'mouse',name:'Gaming mouse'},{rank:3,item:'buds',name:'Earbuds'},{rank:4,item:'cube',name:'Speed cube'}],
+ extras:[['gift','Merchandise Algonova'],['star','Kelas gratis untuk juara'],['shield','E-sertifikat untuk semua peserta']],
+ img:{tablet:'',band:'',mouse:'',buds:'',cube:''}});
 const CATS={
 'mbc-rising':{
  name:'Number Ninjas Rising',prodName:'MBC Math Battle Championship',planet:'Planet Rising',grade:'Kelas 4–6',p:['#b299ff','#5800e5'],
  sym:['+','×','÷','π','7','='],testi:TESTI,heroes:['Ksatria Angka','Ninja Logika','Penjaga Bintang','Kapten Hitung'],divs:MBC_DIVS,
- formatTitle:'Misi tes kamu',format:[['20','soal pilihan ganda'],['3','soal HOTS'],['35','menit']],
+ formatTitle:'Misi tes kamu',format:[['20','soal pilihan ganda','grid','Berapa soal pilihan ganda?'],['3','soal HOTS','bulbs','Berapa soal HOTS?'],['35','menit','clock','Berapa menit waktunya?']],formatNote:'Kerjakan pelan-pelan, kamu pasti bisa!',prizes:PRIZES('Best Overall Math'),
  win:{big:'Final',small:'Grand Final 20 Des, live di Zoom',more:'Semua peserta dapat sertifikat dan laporan kemampuan.'},
  sim:[
   {q:'Bantu Algobot membuka pintu! Angka berikutnya apa?',seq:['2','4','8','16','?'],o:['24','30','32','36'],a:2,w:'Tiap angka dikali 2. 16 × 2 = 32.'},
@@ -592,7 +703,7 @@ const CATS={
 'algo-gamemakers':{
  name:'Game Makers',prodName:'Algo-HC Coding',planet:'Planet Piksel',grade:'Kelas 6–8',p:['#46e3ff','#5800e5'],
  sym:['{ }','</>','▶','01','if','★'],testi:TESTI,heroes:['Kapten Kode','Pembuat Game','Insinyur Bintang','Ksatria Piksel'],divs:ALGO_DIVS,
- formatTitle:'Misi videomu',format:[['1–5','menit durasi video'],['27 Des','batas kirim, 23:59 WIB'],['1','game buatanmu']],
+ formatTitle:'Misi videomu',format:[['1–5','menit durasi video','video','Berapa menit videonya?'],['27 Des','batas kirim, 23:59 WIB','cal','Kapan batas kirimnya?'],['1','game buatanmu','game','Berapa game yang kamu buat?']],formatNote:'Satu game, satu video. Seru kan?',prizes:PRIZES('Best Overall Project'),
  win:{big:'Final',small:'Final live 2 Jan 2027 · Awarding Night 3 Jan',more:'Semua peserta dapat sertifikat dan laporan kemampuan.'},
  sim:[
   {tag:'Game 1',q:'Bantu ksatria sampai ke bendera! Tekan panah, lalu Jalankan.',grid:['S..#..','#.##..','#....F']},
@@ -627,12 +738,15 @@ function go(n,dir=1,force){n=Math.max(0,Math.min(S.length-1,n));if(n===cur&&!for
  if(tc){const w=$('#wipe');w.classList.remove('run');void w.offsetWidth;w.classList.add('run');setTimeout(sw,430);setTimeout(()=>w.classList.remove('run'),1150)}else sw();
  $('#ct').textContent=(n+1)+' / '+S.length;$('#prog').style.width=((n+1)/S.length*100)+'%';notes()}
 function enter(i){const e=els[i];e.classList.remove('rv');$$('.timer',e).forEach(t=>{clearInterval(t._iv);t.textContent='Mulai timer 30 dtk'});
- $$('.hn',e).forEach(h=>h.textContent=hero_);if(e.querySelector('.hn'))setTimeout(()=>burst(960,300,180),500);$$('.cu',e).forEach(countUp);if(S[i].game)gReset(e);upd()}
+ $$('.hn',e).forEach(h=>h.textContent=hero_);if(e.querySelector('.hn'))setTimeout(()=>burst(960,300,180),500);$$('.fc',e).forEach(f=>f.classList.remove('open'));e.classList.remove('fdone');$$('.pz',e).forEach(p=>p.classList.remove('bump'));$$('.cu',e).forEach(countUp);if(S[i].game)gReset(e);upd()}
 function notes(){const n=$('#notes');n.innerHTML=`<b>Slide ${cur+1}${S[cur].q>=0?' · '+QN[S[cur].q]:''}</b><br>${esc(S[cur].notes)}`}
 function pick(s,k){const i=els.indexOf(s),a=S[i].ans;s.classList.add('rv');$$('.opt',s).forEach((o,j)=>o.classList.add(j===a?'ok':'no'));
  if(k===a){if(!S[i].got){S[i].got=1;stars++;upd()}burst(960,520,120)}}
-function next_(){const e=els[cur];if(S[cur].ans!==undefined&&!e.classList.contains('rv')){pick(e,-1);return}go(cur+1,1)}
+function openFc(fc){if(fc.classList.contains('open'))return;fc.classList.add('open');const s=fc.closest('.slide');setTimeout(()=>{$$('.cu',fc).forEach(countUp);burst(+fc.dataset.x,+fc.dataset.y,70)},420);if(!$('.fc:not(.open)',s)){s.classList.add('fdone');setTimeout(()=>burst(960,520,170),900)}}
+function next_(){const e=els[cur];const nf=$('.fc:not(.open)',e);if(nf){openFc(nf);return}if(S[cur].ans!==undefined&&!e.classList.contains('rv')){pick(e,-1);return}go(cur+1,1)}
 stage.addEventListener('click',e=>{if(moved)return;const o=e.target.closest('.opt');if(o){const s=o.closest('.slide');if(!s.classList.contains('rv'))pick(s,+o.dataset.k);return}
+ const fc=e.target.closest('.fc');if(fc){openFc(fc);return}
+ const pz=e.target.closest('.pz');if(pz){pz.classList.remove('bump');void pz.offsetWidth;pz.classList.add('bump');burst(+pz.dataset.x,+pz.dataset.y,60);return}
  const h=e.target.closest('.hc');if(h){$$('.hc',h.parentNode).forEach(x=>x.classList.remove('sel'));h.classList.add('sel');hero_=h.textContent;return}
  const gk=e.target.closest('.gk');if(gk){const sl=gk.closest('.slide'),t=gs(sl);if(!t.busy&&t.q.length<24){t.q.push(gk.dataset.d);gRender(sl)}return}
  if(e.target.closest('.grun')){gRun(e.target.closest('.slide'));return}
@@ -690,3 +804,5 @@ addEventListener('keydown',e=>{if(e.target.isContentEditable||e.target.tagName==
  sel.onchange=()=>build(sel.value);let id=(location.hash||'').slice(1);if(!CATS[id])id=Object.keys(CATS)[0];sel.value=id;
  fit();build(id);wake()})();
 </script>
+
+</body></html>
