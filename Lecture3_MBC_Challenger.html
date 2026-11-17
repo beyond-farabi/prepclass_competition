@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lecture 3 · Logic Legends Challenger · MBC 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1033;--muted:#6B6385;--paper:#FCFAFF;--line:#E6DEF7;--pink:#E6328C;--purple:#6D35D9;--acc:#2563EB;--accs:#DCE7FF;
+--grad:linear-gradient(120deg,#E6328C 0%,#6D35D9 100%);--display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;background:#120B24;overflow:hidden;font-family:var(--body);color:var(--ink)}
+#view{position:fixed;left:0;right:0;top:0;bottom:62px}
+#app.fs #view{bottom:0}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+/* slide */
+.slide{position:absolute;inset:0;overflow:hidden;background-color:var(--paper);
+ background-image:linear-gradient(rgba(109,53,217,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(109,53,217,.07) 2px,transparent 2px),linear-gradient(rgba(109,53,217,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(109,53,217,.035) 1px,transparent 1px);
+ background-size:120px 120px,120px 120px,24px 24px,24px 24px;opacity:0;visibility:hidden;transform:translateX(60px) scale(.985);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1),visibility 0s .6s}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1),visibility 0s}
+.slide.back{transform:translateX(-60px) scale(.985)}
+.slide.dark{background-color:#150D2C;background-image:linear-gradient(rgba(255,255,255,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.05) 2px,transparent 2px);background-size:120px 120px;color:#fff}
+.slide.grad{background:var(--grad);color:#fff}
+.slide.grad::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.09) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.09) 2px,transparent 2px);background-size:120px 120px}
+.in{opacity:0;transform:translateY(28px)}
+.slide.on .in{animation:up .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:var(--d,0s)}
+.static .in,.static.slide{opacity:1!important;transform:none!important;animation:none!important;visibility:visible!important}
+@keyframes up{to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-22px) rotate(var(--r,0deg))}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(230,50,140,.55)}100%{box-shadow:0 0 0 34px rgba(230,50,140,0)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+/* chrome */
+.top{position:absolute;left:96px;right:96px;top:44px;display:flex;align-items:center;gap:28px;font:700 22px var(--mono);letter-spacing:.06em;color:var(--muted);z-index:3}
+.brand{display:flex;align-items:center;gap:14px;text-transform:uppercase}
+.logo{background:var(--grad);color:#fff;border-radius:10px;padding:6px 12px;font:800 22px var(--display);letter-spacing:.02em}
+.secs{display:flex;gap:8px;margin-left:auto}
+.secs span{padding:7px 14px;border-radius:999px;border:2px solid var(--line);font-size:17px;color:var(--muted);background:rgba(255,255,255,.6)}
+.secs span.done{border-color:transparent;background:rgba(109,53,217,.12);color:var(--purple)}
+.secs span.cur{border-color:var(--ink);background:var(--ink);color:#fff}
+.divpill{padding:8px 18px;border-radius:999px;background:var(--acc);color:#fff;font:800 20px var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.foot{position:absolute;left:96px;right:96px;bottom:34px;display:flex;justify-content:space-between;font:600 20px var(--mono);color:var(--muted);z-index:3}
+.dark .top,.grad .top,.dark .foot,.grad .foot{color:rgba(255,255,255,.75)}
+.dark .secs span,.grad .secs span{background:transparent;border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)}
+.dark .secs span.cur,.grad .secs span.cur{background:#fff;color:var(--ink);border-color:#fff}
+.dark .secs span.done,.grad .secs span.done{background:rgba(255,255,255,.14);color:#fff}
+.grad .logo{background:#fff;color:var(--purple)}
+.sym{position:absolute;font:800 520px/1 var(--display);color:var(--purple);opacity:.05;pointer-events:none;user-select:none}
+.dark .sym,.grad .sym{color:#fff;opacity:.07}
+.blob{position:absolute;width:760px;height:760px;border-radius:50%;background:var(--grad);filter:blur(10px);opacity:.10;pointer-events:none}
+/* type */
+.pad{position:absolute;left:110px;right:110px;top:140px;bottom:96px}
+.kick{font:700 26px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--purple)}
+.dark .kick,.grad .kick{color:#FFD84D}
+h1.t{font:800 88px/1.02 var(--display);letter-spacing:-.025em;margin:14px 0 0}
+h1.t.xl{font-size:150px;line-height:.95}
+.lead{font:600 36px/1.38 var(--body);color:var(--muted);margin:20px 0 0;max-width:1500px}
+.dark .lead,.grad .lead{color:rgba(255,255,255,.82)}
+.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+b{color:var(--purple)}
+.dark b,.grad b{color:#FFD84D}
+.card{background:#fff;border:3px solid var(--ink);border-radius:28px;padding:34px 38px;box-shadow:10px 10px 0 var(--ink)}
+.card.soft{border-color:var(--line);box-shadow:8px 8px 0 var(--line)}
+.dark .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.35);box-shadow:10px 10px 0 rgba(255,255,255,.12);color:#fff}
+.num{font:800 26px var(--mono);color:var(--acc);letter-spacing:.06em}
+.ch{font:800 40px/1.15 var(--display);margin:10px 0 10px}
+.cx{font:600 29px/1.4 var(--body);color:var(--muted)}
+.dark .cx{color:rgba(255,255,255,.78)}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:999px;font:700 24px var(--mono);letter-spacing:.04em;background:var(--ink);color:#fff}
+.chip.acc{background:var(--acc)}
+.chip.pk{background:var(--pink)}
+.chip.ln{background:transparent;border:2px solid currentColor;color:inherit}
+[contenteditable]{outline:none;border-bottom:3px dashed rgba(109,53,217,.35);padding:0 6px}
+[contenteditable]:focus{border-bottom-color:var(--pink);background:rgba(230,50,140,.06)}
+/* cover */
+.cov-title{font:800 210px/.88 var(--display);letter-spacing:-.04em;margin:0}
+.float{animation:floaty 6s ease-in-out infinite}
+.fsym{position:absolute;font:800 var(--s,120px)/1 var(--display);color:rgba(255,255,255,.18)}
+/* agenda */
+.agbar{display:flex;height:150px;border-radius:26px;overflow:hidden;border:3px solid var(--ink);box-shadow:10px 10px 0 var(--ink)}
+.agbar div{display:flex;flex-direction:column;justify-content:center;padding:0 22px;border-right:3px solid var(--ink);color:#fff;font:800 30px/1.1 var(--display)}
+.agbar div:last-child{border-right:0}
+.agbar small{font:700 22px var(--mono);opacity:.85;margin-top:8px}
+/* journey */
+.jr{position:relative;height:430px;margin-top:70px}
+.jr .ln{position:absolute;left:30px;right:30px;top:120px;height:8px;background:var(--line);border-radius:8px;overflow:hidden}
+.jr .ln i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--grad);transition:width 1.6s cubic-bezier(.2,.8,.2,1) .4s}
+.slide.on .jr .ln i{width:var(--w)}
+.jn{position:absolute;top:0;width:200px;margin-left:-100px;text-align:center}
+.jn .dt{font:800 30px var(--mono);color:var(--ink);height:80px;display:flex;align-items:flex-end;justify-content:center;line-height:1.1}
+.jn .dot{width:44px;height:44px;margin:16px auto 0;border-radius:50%;background:#fff;border:6px solid var(--line)}
+.jn.big .dot{background:var(--pink);border-color:var(--pink)}
+.jn.now .dot{background:var(--acc);border-color:var(--acc);animation:pulse 1.6s infinite}
+.jn .nm{font:800 31px/1.15 var(--display);margin-top:22px}
+.jn .ds{font:600 22px/1.3 var(--body);color:var(--muted);margin-top:8px}
+.jn.now .nm{color:var(--acc)}
+/* flip cards */
+.fcs{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;margin-top:56px}
+.fc{height:430px;perspective:1600px;cursor:pointer}
+.fci{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.3,1.4,.4,1);transform-style:preserve-3d}
+.fc.open .fci{transform:rotateY(180deg)}
+.fcf,.fcb{position:absolute;inset:0;border-radius:32px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;border:3px solid var(--ink);box-shadow:12px 12px 0 var(--ink)}
+.fcf{background:var(--grad);color:#fff}
+.fcf b{font:800 200px/1 var(--display);color:#fff}
+.fcf span{font:700 34px/1.25 var(--body);margin-top:6px}
+.fcf em{font:700 22px var(--mono);font-style:normal;margin-top:18px;opacity:.8;letter-spacing:.08em;text-transform:uppercase}
+.fcb{background:#fff;transform:rotateY(180deg)}
+.fcb b{font:800 190px/1 var(--display);color:var(--purple)}
+.fcb span{font:700 38px/1.2 var(--body);margin-top:10px}
+.fcb small{font:600 26px/1.3 var(--body);color:var(--muted);margin-top:12px}
+/* score */
+.sbar{display:flex;height:170px;border:3px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:10px 10px 0 var(--ink);margin-top:48px}
+.sbar div{display:flex;align-items:center;justify-content:space-between;padding:0 40px;color:#fff;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.slide.on .sbar div{width:var(--w)}
+.sbar .p1{background:var(--purple)}.sbar .p2{background:var(--pink)}
+.sbar strong{font:800 92px var(--display);white-space:nowrap}
+.sbar span{font:700 30px/1.2 var(--body);white-space:nowrap}
+/* grids */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:56px;margin-top:60px;position:relative}
+.flow .card{position:relative;min-height:360px}
+.flow .card:not(:last-child)::after{content:'→';position:absolute;right:-54px;top:50%;transform:translateY(-50%);font:800 50px var(--display);color:var(--pink)}
+.bign{font:800 110px/1 var(--display);color:var(--acc)}
+/* topics */
+.tp{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:44px}
+.tp .card{padding:28px 32px}
+.mix{display:flex;gap:0;height:96px;border-radius:22px;overflow:hidden;border:3px solid var(--ink);margin-top:48px}
+.mix div{display:flex;align-items:center;justify-content:center;color:#fff;font:800 30px var(--display)}
+/* quiz */
+.qhead{display:flex;align-items:center;gap:18px}
+.meter{display:flex;gap:6px;margin-left:6px}
+.meter i{width:34px;height:14px;border-radius:5px;background:var(--line)}
+.meter i.f{background:var(--acc)}
+.meter.h i.f{background:var(--pink)}
+.timer{margin-left:auto;cursor:pointer;border:3px solid var(--ink);background:#fff;border-radius:999px;padding:10px 26px;font:800 26px var(--mono);color:var(--ink)}
+.timer.run{background:var(--ink);color:#fff}
+.timer.end{background:var(--pink);border-color:var(--pink);color:#fff}
+.q{font:700 54px/1.25 var(--body);margin:34px 0 0;max-width:1700px}
+.q.sm{font-size:46px}
+.seq{display:flex;gap:22px;margin-top:34px}
+.seq span{min-width:124px;height:124px;padding:0 22px;border-radius:26px;background:var(--purple);color:#fff;font:800 64px var(--display);display:grid;place-items:center;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink)}
+.seq span.qm{background:var(--acc)}
+.opts{position:absolute;left:110px;right:110px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.opts.c3{grid-template-columns:repeat(3,1fr)}
+.opt{display:flex;align-items:center;gap:28px;padding:22px 30px;border:3px solid var(--ink);border-radius:26px;background:#fff;font:700 46px/1.15 var(--body);color:var(--ink);cursor:pointer;box-shadow:8px 8px 0 var(--ink);text-align:left;transition:transform .15s,box-shadow .15s,background .3s,opacity .3s}
+.opt:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--ink)}
+.opt b{flex:none;width:78px;height:78px;border-radius:20px;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 40px var(--display)}
+.rv .opt{cursor:default}
+.rv .opt:hover{transform:none;box-shadow:8px 8px 0 var(--ink)}
+.rv .opt.ok{background:#E3FBEA;border-color:#15803D;box-shadow:8px 8px 0 #15803D;animation:pop .5s}
+.rv .opt.ok b{background:#15803D}
+.rv .opt.no{opacity:.35}
+.rv .opt.pk.no{opacity:.7;background:#FFE4EC;border-color:#E11D48;box-shadow:8px 8px 0 #E11D48}
+.why{position:absolute;left:110px;right:110px;bottom:92px;padding:26px 36px;border-radius:26px;background:var(--ink);color:#fff;font:600 33px/1.38 var(--body);opacity:0;transform:translateY(24px);transition:all .5s cubic-bezier(.2,.8,.2,1)}
+.rv .why{opacity:1;transform:none}
+.why b{color:#FFD84D}
+.pad.hasfig .q{max-width:1180px}
+.qfig{position:absolute;right:110px;top:215px;width:470px;height:350px;display:grid;place-items:center;background:#fff;border:3px solid var(--ink);border-radius:26px;box-shadow:8px 8px 0 var(--ink)}
+.howto{font:700 22px var(--mono);color:var(--muted);letter-spacing:.04em;margin-top:18px}
+/* hots */
+.hbox{display:flex;align-items:center;gap:28px;margin-top:50px}
+.hin{width:440px;font:800 76px var(--mono);padding:14px 30px;border:4px solid var(--ink);border-radius:22px;background:#fff;color:var(--ink);box-shadow:8px 8px 0 var(--ink);outline:none}
+.hin:focus{border-color:var(--pink)}
+.hgo{border:4px solid var(--ink);background:var(--grad);color:#fff;font:800 36px var(--display);padding:26px 42px;border-radius:22px;cursor:pointer;box-shadow:8px 8px 0 var(--ink)}
+.hmsg{font:800 40px var(--display)}
+.hmsg.ok{color:#15803D}.hmsg.no{color:#E11D48}
+.hnote{margin-top:26px;font:600 28px var(--body);color:var(--muted)}
+.rv .hans{opacity:1}
+.hans{opacity:0;transition:opacity .4s;font:800 34px var(--mono);color:var(--pink);margin-top:20px}
+/* steps reveal */
+.st{transition:opacity .45s,transform .45s}
+.st.hid{opacity:.08;transform:translateX(-14px)}
+.stp{display:flex;gap:26px;align-items:flex-start;margin-bottom:26px}
+.stp .n{flex:none;width:66px;height:66px;border-radius:18px;background:var(--acc);color:#fff;display:grid;place-items:center;font:800 34px var(--display);border:3px solid var(--ink)}
+.stp .x{font:600 36px/1.38 var(--body);padding-top:6px}
+/* visuals */
+.vis{background:#fff;border:3px solid var(--ink);border-radius:30px;box-shadow:12px 12px 0 var(--ink);padding:40px;position:relative}
+.tens{display:flex;align-items:flex-end;gap:12px;height:190px}
+.rod{width:30px;height:180px;border-radius:7px;background:var(--purple);border:2px solid var(--ink)}
+.cube{width:30px;height:30px;border-radius:6px;background:var(--acc);border:2px solid var(--ink)}
+.fbar{display:flex;height:64px;border:3px solid var(--ink);border-radius:12px;overflow:hidden;flex:1}
+.fbar i{flex:1;border-right:2px solid var(--ink);background:#fff}
+.fbar i:last-child{border-right:0}
+.fbar i.f{background:var(--purple)}
+.fbar.alt i.f{background:var(--acc)}
+.frow{display:flex;align-items:center;gap:26px;margin:16px 0}
+.frow>span{width:120px;font:800 42px var(--display);color:var(--purple)}
+.fm{font:800 54px/1.2 var(--display);text-align:center;padding:28px;border:3px solid var(--ink);border-radius:22px;background:var(--paper);margin-bottom:24px;letter-spacing:.01em}
+.pat{display:flex;gap:16px;font:800 96px/1 var(--display);align-items:center}
+.pat span{width:110px;text-align:center}
+.pat .s{color:var(--pink)} .pat .c{color:var(--purple)} .pat .qq{color:var(--acc)}
+.bm{display:flex;align-items:center;gap:20px;margin:18px 0}
+.bm>span{width:130px;font:800 40px var(--display)}
+.bm i{width:150px;height:84px;border:3px solid var(--ink);display:grid;place-items:center;font:800 40px var(--display);color:#fff;font-style:normal;margin-right:-3px}
+/* trick */
+.quote{font:800 120px/1.02 var(--display);letter-spacing:-.03em;margin:30px 0 0;max-width:1600px}
+/* attend */
+.code{display:flex;gap:34px;margin-top:60px}
+.code span{width:230px;height:270px;border-radius:34px;background:#fff;color:var(--ink);display:grid;place-items:center;font:800 190px var(--display);border:4px solid #fff;box-shadow:12px 12px 0 var(--pink);text-transform:uppercase;outline:none}
+.code span:focus{border-color:var(--pink)}
+/* controls */
+#bar{position:fixed;left:0;right:0;bottom:0;height:62px;display:flex;align-items:center;gap:8px;padding:0 14px;background:#0C0719;color:#fff;font:600 14px var(--body);z-index:20;transition:opacity .3s}
+#app.fs #bar{opacity:0;pointer-events:none}
+#app.fs #bar:hover{opacity:1;pointer-events:auto}
+#bar button,#bar select{background:#231942;color:#fff;border:1px solid #3A2C66;border-radius:10px;padding:8px 14px;font:700 14px var(--body);cursor:pointer}
+#bar button:hover{background:#33255E}
+#bar .pri{background:var(--pink);border-color:var(--pink)}
+#bar .sp{flex:1}
+#ct{font:700 14px var(--mono);min-width:70px;text-align:center;color:#C9BEEA}
+#prog{position:fixed;left:0;bottom:62px;height:4px;background:var(--grad);z-index:21;transition:width .4s}
+#app.fs #prog{bottom:0}
+#notes{position:fixed;right:16px;bottom:78px;width:560px;max-height:58vh;overflow:auto;background:#FFFDF2;color:#2A2140;border-radius:16px;padding:20px 22px;font:500 16px/1.55 var(--body);box-shadow:0 20px 50px rgba(0,0,0,.45);z-index:25;white-space:pre-wrap;border:2px solid #FFD84D}
+#notes h4{margin:0 0 8px;font:800 15px var(--mono);color:var(--purple);letter-spacing:.04em}
+#ov{position:fixed;inset:0 0 62px 0;background:rgba(12,7,25,.96);z-index:30;overflow:auto;padding:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px;align-content:start}
+#ov .tile{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;cursor:pointer;border:3px solid transparent}
+#ov .tile.cur{border-color:var(--pink)}
+#ov .tile .sc{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;pointer-events:none}
+#ov .tile em{position:absolute;left:8px;top:8px;background:#0C0719;color:#fff;font:700 13px var(--mono);padding:3px 8px;border-radius:6px;font-style:normal;z-index:2}
+#help{position:fixed;left:16px;bottom:78px;background:#0C0719;color:#fff;border:1px solid #3A2C66;border-radius:14px;padding:16px 20px;font:500 14px/1.8 var(--body);z-index:26}
+#cf{position:absolute;inset:0;pointer-events:none;z-index:9}
+@media (max-width:700px){#bar .hide-s{display:none}}
+</style>
+</head>
+<body>
+<div id="app">
+ <div id="view"><div id="stage"><canvas id="cf" width="1920" height="1080"></canvas></div></div>
+ <div id="prog"></div>
+ <div id="bar">
+  <button id="bp">◀ Kembali</button><span id="ct">1 / 1</span><button id="bn" class="pri">Lanjut ▶</button>
+  <span class="sp"></span>
+  <button id="bo" class="hide-s">Semua slide (O)</button>
+  <button id="bt">Catatan tutor (N)</button>
+  <button id="bf">Layar penuh (F)</button>
+  <button id="bh" class="hide-s">?</button>
+ </div>
+ <div id="notes" hidden></div>
+ <div id="ov" hidden></div>
+ <div id="help" hidden><b style="color:#FFD84D">Pintasan</b><br>→ / Spasi: lanjut (membuka jawaban atau langkah dulu)<br>←: kembali · Home / End: awal / akhir<br>F: layar penuh · O: semua slide · N: catatan tutor<br>Klik pilihan jawaban untuk membukanya.<br>Teks bergaris putus-putus bisa diketik langsung.</div>
+</div>
+<script>const D={"name": "Logic Legends Challenger", "short": "Challenger", "grade": "SMP kelas 7–9", "acc": "#2563EB", "when": "Pertemuan 3 · Jumat, 27 Nov 2026 · 19.00–20.00 WIB", "sym": ["✓", "x̄", "√", "n²", "?"], "lesson": "HOTS &amp; <span style=\"color:#FFD84D\">Siap Try-out<\/span>", "coverSub": "Kuis aturan, jurus HOTS, simulasi mini, dan persiapan try-out", "slides": [{"sec": 0, "notes": "[−5–0 mnt] Tayangkan sambil peserta masuk. Ini Lecture terakhir sebelum penyisihan. Sapa lewat chat.\nDivisi Logic Legends Challenger (SMP kelas 7–9).", "type": "cover"}, {"sec": 0, "notes": "[0–2 mnt] Perkenalan singkat untuk peserta baru. Ingatkan 4 aturan. Polling uji coba.", "type": "tutor", "rules": [["Kamera & mic mati", "Supaya suara kelas jernih untuk 100 peserta."], ["Jawab lewat polling", "Penonton YouTube Live: tulis jawaban di **chat**."], ["Siapkan kertas & pensil", "Coret-coret membantu berpikir."], ["Bertanya lewat chat", "Tulis pertanyaanmu di chat. Host akan membacakannya."]]}, {"sec": 0, "notes": "[2–5 mnt] Bahas Tantangan Mingguan 2. Buka langkah dengan →. Ketik 3–5 nama penjawab benar (nama depan + kota saja).", "type": "example", "kick": "Pembahasan Tantangan Mingguan 2", "title": "Sudah ada yang bisa?", "problem": "Bilangan tiga angka berbeda: habis dibagi 5, jumlah angkanya 12, angka ratusan = 2 × angka puluhan. Tentukan bilangannya.", "steps": ["Habis dibagi 5 → satuan **0 atau 5**. Ratusan = 2b, jadi 2b + b + c = 12 → **3b + c = 12**.", "Satuan 5 tidak mungkin (3b = 7). Satuan 0 → **b = 4**, ratusan 8.", "Bilangannya **840**."], "winners": "[nama depan, kota] · [nama depan, kota] · [nama depan, kota]"}, {"sec": 0, "notes": "[5–6 mnt] \"Hari ini: kuis aturan, jurus HOTS, simulasi mini, lalu persiapan try-out besok.\"", "type": "agenda", "items": [["Pembuka", 6], ["Kuis aturan", 6], ["HOTS", 18], ["Simulasi", 15], ["Try-out", 7], ["Penutup", 8]], "notes3": [["Pertemuan terakhir", "Lecture terakhir **sebelum penyisihan**."], ["Fokus HOTS", "3 soal HOTS = **30 poin**. Kita latih hari ini."], ["Try-out besok", "**28–30 Nov**, boleh 2 kali."]]}, {"sec": 1, "notes": "[6–7.5 mnt] Kuis kilat. Polling 30 detik, lalu buka jawaban.\nKunci: B (1 kali).", "time": 30, "how": "Polling kilat · 30 detik", "type": "quiz", "label": "Kuis aturan 1", "q": "Penyisihan boleh dikerjakan berapa kali?", "o": ["2 kali", "1 kali", "Sepuasnya"], "a": 1, "w": "Penyisihan hanya **1 kali**. Yang boleh 2 kali adalah **try-out**."}, {"sec": 1, "notes": "[7.5–9 mnt] Kuis kilat. Polling 30 detik, lalu buka jawaban.\nKunci: B (Tidak).", "time": 30, "how": "Polling kilat · 30 detik", "type": "quiz", "label": "Kuis aturan 2", "q": "Apakah jawaban salah mengurangi nilai?", "o": ["Ya", "Tidak"], "a": 1, "w": "**Tidak.** Jawaban salah atau kosong bernilai 0, jadi isi semua soal."}, {"sec": 1, "notes": "[9–10.5 mnt] Kuis kilat. Polling 30 detik, lalu buka jawaban.\nKunci: A (Satu bilangan saja).", "time": 30, "how": "Polling kilat · 30 detik", "type": "quiz", "label": "Kuis aturan 3", "q": "Jawaban soal HOTS ditulis ...", "o": ["Satu bilangan saja", "Bilangan + satuan", "Kalimat lengkap"], "a": 0, "w": "**Satu bilangan saja**, tanpa satuan. Jawaban dinilai otomatis."}, {"sec": 1, "notes": "[10.5–12 mnt] Kuis kilat. Polling 30 detik, lalu buka jawaban.\nKunci: B (Tidak boleh).", "time": 30, "how": "Polling kilat · 30 detik", "type": "quiz", "label": "Kuis aturan 4", "q": "Bolehkah pindah tab untuk mencari jawaban?", "o": ["Boleh", "Tidak boleh"], "a": 1, "w": "**Tidak boleh.** Perpindahan tab tercatat oleh sistem."}, {"sec": 2, "notes": "[12–15 mnt] Jelaskan bedanya HOTS dengan PG. Tekankan: 3 soal HOTS = 30 poin, dan format jawaban harus satu bilangan.", "type": "honest", "kick": "Mengenal soal HOTS", "title": "Apa bedanya <span class=\"g\">HOTS?<\/span>", "cards": [["Bernilai 10", "1 soal HOTS = **10 poin**, hampir 3 soal PG."], ["Isian satu bilangan", "Tulis bilangannya saja, **tanpa satuan** atau kata."], ["Dinilai otomatis", "Jawaban dicocokkan dengan kunci, jadi **format harus tepat**."], ["Beberapa langkah", "Biasanya 2–4 langkah. **Rencanakan** dulu sebelum menghitung."]]}, {"sec": 2, "notes": "[15–18 mnt] Empat langkah HOTS. Bacakan contoh salah ketik di bawah dan minta peserta menyebut versi yang benar.", "type": "exam", "kick": "4 langkah HOTS", "title": "Pahami, rencanakan, kerjakan, cek", "steps": [["Pahami", "Apa yang **ditanya**? Garis bawahi."], ["Rencanakan", "Gambar, buat tabel, atau **coba kasus kecil**."], ["Kerjakan", "Tulis langkahnya di kertas dengan **rapi**."], ["Cek & ketik", "Masuk akal? Ketik **satu bilangan** saja."]], "note": "Contoh salah ketik: **\"12 cm\"**, **\"dua belas\"**, **\"x = 12\"**. Yang benar cukup: **12**."}, {"sec": 2, "notes": "[18–23 mnt] Kerjakan bersama dengan 4 langkah. Tekan → untuk membuka langkah satu per satu.", "type": "example", "kick": "Contoh HOTS · kita kerjakan bersama", "title": "Contoh HOTS: rata-rata", "problem": "Rata-rata nilai 5 siswa adalah 70. Seorang siswa baru bergabung dan rata-ratanya menjadi 72. Berapa nilai siswa baru?", "hint": "ubah rata-rata menjadi jumlah", "steps": ["**Pahami:** rata-rata berubah karena ada satu nilai baru.", "**Rencanakan:** jumlah = rata-rata × banyak data.", "**Kerjakan:** 6 × 72 − 5 × 70 = 432 − 350 = **82**.", "**Cek & ketik:** nilai baru di atas 72, masuk akal. Ketik **82**."]}, {"sec": 2, "notes": "[23–26.5 mnt] HOTS 1. Nyalakan timer 2 menit. Ketik jawaban salah satu peserta dari chat ke kotak, lalu \"Kirim jawaban\". Tekan → untuk pembahasan.\nKunci: 17.", "type": "hots", "label": "Latihan HOTS 1", "time": 120, "q": "Ada berapa bilangan bulat dari 1 sampai 100 yang habis dibagi 4 tetapi tidak habis dibagi 6?", "ans": "17", "w": "Habis dibagi 4: 25 bilangan. Yang juga habis dibagi 6 adalah kelipatan 12: 8 bilangan. Jadi 25 − 8 = **17**."}, {"sec": 2, "notes": "[26.5–30 mnt] HOTS 2. Nyalakan timer 2 menit. Ketik jawaban salah satu peserta dari chat ke kotak, lalu \"Kirim jawaban\". Tekan → untuk pembahasan.\nKunci: 60.", "type": "hots", "label": "Latihan HOTS 2", "time": 120, "q": "Keliling persegi panjang 34 cm dan diagonalnya 13 cm. Berapa cm² luasnya?", "ans": "60", "w": "p + l = 17 dan p² + l² = 169. (p + l)² = 289, jadi 2pl = 289 − 169 = 120 dan luas pl = **60**. (Sisinya 12 dan 5.)"}, {"sec": 3, "notes": "[30–33.5 mnt] Simulasi mini: perlakukan seperti ujian sungguhan. Timer 90 detik, lalu polling.\nKunci: B (−2).", "label": "Simulasi 1/4", "time": 90, "how": "Simulasi: kerjakan seperti ujian sungguhan", "type": "quiz", "q": "(−3) × 4 + 10 = ...", "o": ["−22", "−2", "2", "22"], "a": 1, "w": "−12 + 10 = **−2**."}, {"sec": 3, "notes": "[33.5–37 mnt] Simulasi mini: perlakukan seperti ujian sungguhan. Timer 90 detik, lalu polling.\nKunci: C (17).", "label": "Simulasi 2/4", "time": 90, "how": "Simulasi: kerjakan seperti ujian sungguhan", "type": "quiz", "q": "Rata-rata 4 bilangan adalah 12. Satu bilangan ditambahkan, rata-ratanya menjadi 13. Bilangan itu adalah ...", "o": ["13", "15", "17", "25"], "a": 2, "w": "5 × 13 − 4 × 12 = 65 − 48 = **17**."}, {"sec": 3, "notes": "[37–40.5 mnt] Simulasi mini: perlakukan seperti ujian sungguhan. Timer 90 detik, lalu polling.\nKunci: D (9).", "label": "Simulasi 3/4", "time": 90, "how": "Simulasi: kerjakan seperti ujian sungguhan", "type": "quiz", "q": "Banyak diagonal segi-6 adalah ...", "o": ["6", "12", "15", "9"], "a": 3, "w": "Setiap titik ke 3 titik lain (bukan tetangga): 6 × 3 ÷ 2 = **9**."}, {"sec": 3, "notes": "[40.5–44 mnt] Simulasi soal HOTS. Kunci: 13.", "label": "Simulasi 4/4 · HOTS", "time": 150, "type": "hots", "q": "Selisih kuadrat dua bilangan asli berurutan adalah 25. Berapa bilangan yang lebih besar?", "ans": "13", "w": "(n + 1)² − n² = 2n + 1 = 25, jadi n = 12. Yang lebih besar **13**."}, {"sec": 4, "notes": "[44–47 mnt] Jelaskan try-out. Ajak semua mencoba besok. Tekankan: tampilan try-out sama dengan penyisihan.", "type": "exam", "kick": "Try-out · 28–30 Nov", "title": "Latihan di web <span class=\"g\">sungguhan<\/span>", "steps": [["Masuk", "Buka **mbc.algonova.com** dengan username dan password."], ["Mulai try-out", "12 PG + 3 isian, **35 menit**."], ["Pakai strateginya", "Dua putaran, jurus PG, dan **4 langkah HOTS**."], ["Ulangi bila perlu", "Boleh **2 kali**. Nilainya tidak dihitung."]], "note": "Penyisihan: **1 Des 08.00 – 13 Des 23.59 WIB**, hanya **1 kali**."}, {"sec": 4, "notes": "[47–49 mnt] Checklist hari H. Minta peserta menyalin ke kertas.", "type": "honest", "kick": "Checklist hari H", "title": "Siap <span class=\"g\">penyisihan<\/span>", "cards": [["Perangkat siap", "Baterai penuh atau sambil dicas."], ["Koneksi stabil", "Cari tempat dengan sinyal bagus."], ["Tempat tenang", "Siapkan kertas, pensil, dan air minum."], ["Waktu luang ±1 jam", "Pilih waktu saat segar, bukan larut malam."]], "note": ""}, {"sec": 5, "notes": "[50 mnt] Ucapkan jurusnya. Ini pesan terakhir sebelum penyisihan.", "type": "trick", "text": "Hitungan terlalu panjang? Cari jalan pintas.", "sub": "Maksimal 2–3 menit per PG, lalu lewati. HOTS: ubah ke bentuk yang dikenal (jumlah, selisih, identitas), lalu ketik satu bilangan."}, {"sec": 5, "notes": "[51–52 mnt] Tantangan terakhir sebelum penyisihan. Jangan beri jawabannya. Kirim pembahasan di grup WhatsApp divisi pada [tanggal].\nKunci (untuk tutor): 20 · 1 · 1540.", "type": "challenge", "task": "1) √(16 × 25) = ...\n2) Sisa 2²⁰ dibagi 3 = ...\n3) Volume tabung dengan r = 7 cm dan t = 10 cm\n    (π = 22/7) = ... cm³", "how": ["Kerjakan di kertas, lengkap dengan caranya.", "Kirim lewat link di **grup WhatsApp divisi** sebelum **1 Des**.", "Pembahasannya dikirim di **grup WhatsApp divisi**."]}, {"sec": 5, "notes": "[53–54 mnt] Ketik 4 huruf kode kehadiran dari panitia. Biarkan tampil ±1 menit.", "type": "attend", "text": "Masukkan kode ini di **dashboard peserta** sebelum kelas berakhir. Penonton YouTube Live juga ya!"}, {"sec": 5, "notes": "[55–57 mnt] Bicara langsung ke orang tua, maksimal 1 menit. Tanpa menyebut harga atau promo.", "type": "parents", "items": [["Pilih waktu terbaik", "Bantu remaja memilih waktu ujian saat segar, bukan larut malam."], ["Siapkan perangkat", "Cek baterai, koneksi, dan login **sehari sebelumnya**."], ["Beri ruang", "Yang penting mencoba dengan jujur. Semua peserta mendapat **e-sertifikat**."]], "foot": "Kelas ini gratis dari **Algonova**, sekolah online matematika dan coding untuk anak dan remaja."}, {"sec": 5, "notes": "[58–60 mnt] Sebut tanggal try-out, penyisihan, dan Grand Final. Ucapkan terima kasih dan semoga sukses. Rekap dan slide dikirim di grup WhatsApp divisi maksimal 24 jam.", "type": "closing", "next": "Penyisihan · 1 Des 08.00 – 13 Des 23.59 WIB", "items": [["Try-out 28–30 Nov", "Boleh **2 kali**, nilainya tidak dihitung."], ["Grand Final 20 Des", "10 besar tiap divisi, **live di Zoom**."], ["Kontak panitia", "WhatsApp **0853-3877-1972**"]]}], "lecLabel": "Lecture 3 · 2026", "secs": ["Pembuka", "Kuis aturan", "HOTS", "Simulasi", "Try-out", "Penutup"], "coverChip": "LECTURE · PERTEMUAN 3 · GRATIS", "closeTitle": "Semoga sukses<br>di penyisihan!"};</script>
+<script>
+const $=(q,e=document)=>e.querySelector(q),$$=(q,e=document)=>[...e.querySelectorAll(q)];
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
+const IN=(d,c='')=>`class="in ${c}" style="--d:${d}s"`;
+const SECS=D.secs;
+const L='ABCD';
+const stage=$('#stage'),app=$('#app');
+let S=D.slides,els=[],cur=-1;
+
+function chrome(s,i){return `<div class="top"><div class="brand"><span class="logo">MBC</span><span>${esc(D.lecLabel)}</span></div><div class="secs">${SECS.map((x,j)=>`<span class="${j<s.sec?'done':j===s.sec?'cur':''}">${x}</span>`).join('')}</div><div class="divpill">${esc(D.short)}</div></div>
+<div class="foot"><span>${esc(D.name)} · ${esc(D.grade)}</span><span>${String(i+1).padStart(2,'0')} / ${String(S.length).padStart(2,'0')}</span></div>`}
+function deco(i,dark){const sy=D.sym[i%D.sym.length],pos=[['right:-60px;top:120px'],['left:-40px;bottom:-140px'],['right:40px;bottom:-160px']][i%3];
+ return `<div class="sym" style="${pos}">${esc(sy)}</div>${dark?'':`<div class="blob" style="${i%2?'left:-380px;top:-420px':'right:-420px;bottom:-460px'}"></div>`}`}
+
+/* ---------- renderers ---------- */
+const R={};
+R.cover=s=>`<div class="pad" style="top:170px">
+ <div ${IN(.1)}><span class="chip ln" style="color:#fff">${esc(D.coverChip)}</span></div>
+ <h1 class="cov-title" ${IN(.25)} style="margin-top:40px">${D.lesson}</h1>
+ <div ${IN(.45)} style="font:700 46px/1.3 var(--body);margin-top:36px;max-width:1300px">${esc(D.name)} · ${esc(D.grade)}</div>${D.coverSub?`<div ${IN(.55)} style="font:700 34px/1.3 var(--body);margin-top:14px;color:#FFD84D">${md(D.coverSub)}</div>`:''}
+ <div ${IN(.6)} style="display:flex;gap:18px;margin-top:44px;flex-wrap:wrap"><span class="chip" style="background:#fff;color:var(--ink)">${esc(D.when)}</span><span class="chip" style="background:rgba(255,255,255,.18)">Siapkan kertas & pensil</span><span class="chip" style="background:rgba(255,255,255,.18)">60 menit</span></div>
+ <div ${IN(.8)} style="position:absolute;left:0;bottom:30px;font:700 30px var(--body);opacity:.9">Kelas segera dimulai. Sambil menunggu, tulis <b>nama depan dan kotamu</b> di chat!</div></div>
+ ${['+','×','÷','=','π','√','%','∑'].map((x,k)=>`<div class="fsym float" style="right:${80+(k%4)*190}px;top:${150+Math.floor(k/4)*300+(k%2)*90}px;--s:${110+(k%3)*40}px;--r:${(k%2?-1:1)*12}deg;animation-delay:${-k*.7}s">${x}</div>`).join('')}`;
+R.tutor=s=>`<div class="pad">
+ <div class="kick" ${IN(.05)}>Halo semuanya!</div>
+ <h1 class="t" ${IN(.15)}>Aku Kak <span contenteditable spellcheck="false">[nama tutor]</span></h1>
+ <p class="lead" ${IN(.25)}><span contenteditable spellcheck="false">[1 kalimat: mengajar apa di Algonova, hal yang disukai dari matematika]</span></p>
+ <div class="kick" ${IN(.35)} style="margin-top:64px">4 aturan kelas</div>
+ <div class="g4" style="margin-top:26px">${s.rules.map((r,k)=>`<div class="card" ${IN(.45+k*.12)}><div class="num">0${k+1}</div><div class="ch">${esc(r[0])}</div><div class="cx">${md(r[1])}</div></div>`).join('')}</div></div>`;
+R.agenda=s=>{const tot=s.items.reduce((a,x)=>a+x[1],0),cols=['#1A1033','#6D35D9','#E6328C',D.acc,'#9B5CF6','#1A1033'];
+ return `<div class="pad"><div class="kick" ${IN(.05)}>60 menit hari ini</div><h1 class="t" ${IN(.15)}>Rencana <span class="g">petualangan</span> kita</h1>
+ <div class="agbar" ${IN(.3)} style="margin-top:70px">${s.items.map((x,k)=>`<div style="flex:${x[1]};background:${cols[k%cols.length]}">${esc(x[0])}<small>${x[1]} mnt</small></div>`).join('')}</div>
+ <div class="g3" style="margin-top:70px">${s.notes3.map((x,k)=>`<div class="card soft" ${IN(.5+k*.12)}><div class="ch" style="font-size:36px">${esc(x[0])}</div><div class="cx">${md(x[1])}</div></div>`).join('')}</div></div>`};
+R.journey=s=>{const n=s.items.length,now=s.items.findIndex(x=>x[2]==='now');
+ return `<div class="pad"><div class="kick" ${IN(.05)}>Perjalanan MBC 2026</div><h1 class="t" ${IN(.15)}>Dari kelas hari ini sampai <span class="g">Grand Final</span></h1>
+ <div class="jr"><div class="ln" style="--w:100%"><i></i></div>${s.items.map((x,k)=>`<div class="jn ${x[2]||''} in" style="left:${(k+.5)/n*100}%;--d:${.3+k*.12}s"><div class="dt">${esc(x[0])}</div><div class="dot"></div><div class="nm">${esc(x[1])}</div>${x[3]?`<div class="ds">${esc(x[3])}</div>`:''}</div>`).join('')}</div>
+ <div class="card soft" ${IN(1.3)} style="margin-top:10px;font:600 30px/1.4 var(--body)">${md(s.note)}</div></div>`};
+R.format=s=>`<div class="pad"><div class="kick" ${IN(.05)}>Penyisihan · 1–13 Desember</div><h1 class="t" ${IN(.15)}>Tebak dulu: seperti apa <span class="g">tesnya?</span></h1>
+ <div class="fcs">${s.cards.map((c,k)=>`<div class="fc in" style="--d:${.3+k*.12}s"><div class="fci"><div class="fcf"><b>?</b><span>${esc(c[0])}</span><em>Ketuk untuk membuka</em></div><div class="fcb"><b>${esc(c[1])}</b><span>${esc(c[2])}</span><small>${esc(c[3])}</small></div></div></div>`).join('')}</div>
+ <div ${IN(.7)} style="display:flex;gap:16px;margin-top:56px;flex-wrap:wrap">${s.chips.map(c=>`<span class="chip acc">${esc(c)}</span>`).join('')}</div></div>`;
+R.score=s=>`<div class="pad"><div class="kick" ${IN(.05)}>Cara menghitung nilai</div><h1 class="t" ${IN(.15)}>Nilai maksimal <span class="g">100</span></h1>
+ <div class="sbar" ${IN(.3)}><div class="p1" style="--w:70%"><span>20 PG × 3,5</span><strong>70</strong></div><div class="p2" style="--w:30%"><span>3 HOTS × 10</span><strong>30</strong></div></div>
+ <div class="g3" style="margin-top:64px">${s.cards.map((c,k)=>`<div class="card" ${IN(.6+k*.12)}><div class="num">0${k+1}</div><div class="ch">${esc(c[0])}</div><div class="cx">${md(c[1])}</div></div>`).join('')}</div></div>`;
+R.exam=s=>`<div class="pad"><div class="kick" ${IN(.05)}>${esc(s.kick||'Hari H penyisihan')}</div><h1 class="t" ${IN(.15)}>${s.title||'Saat ujian berlangsung'}</h1>
+ <div class="flow">${s.steps.map((c,k)=>`<div class="card" ${IN(.3+k*.15)}><div class="bign">${k+1}</div><div class="ch">${esc(c[0])}</div><div class="cx">${md(c[1])}</div></div>`).join('')}</div>
+ <div class="card soft" ${IN(1)} style="margin-top:56px;font:600 30px/1.4 var(--body)">${md(s.note)}</div></div>`;
+R.honest=s=>`<div class="pad"><div class="kick" ${IN(.05)}>${esc(s.kick||'Main jujur, main keren')}</div><h1 class="t" ${IN(.15)}>${s.title||'Aturan jujur saat ujian'}</h1>
+ <div class="g2" style="margin-top:56px">${s.cards.map((c,k)=>`<div class="card" ${IN(.3+k*.12)} style="display:flex;gap:30px;align-items:flex-start"><div class="bign" style="font-size:80px;line-height:.9">0${k+1}</div><div><div class="ch" style="margin-top:0">${esc(c[0])}</div><div class="cx">${md(c[1])}</div></div></div>`).join('')}</div>
+ ${s.note?`<div ${IN(.9)} style="margin-top:40px"><span class="chip pk" style="font-size:26px">${esc(s.note)}</span></div>`:''}</div>`;
+R.topics=s=>`<div class="pad"><div class="kick" ${IN(.05)}>Materi ${esc(D.short)}</div><h1 class="t" ${IN(.15)}>Topik yang sering <span class="g">muncul</span></h1>
+ <div class="tp">${s.items.map((c,k)=>`<div class="card soft" ${IN(.3+k*.08)}><div class="ch" style="margin-top:0;font-size:38px">${esc(c[0])}</div><div class="cx" style="font-size:27px">${esc(c[1])}</div></div>`).join('')}</div>
+ <div class="mix" ${IN(.9)}><div style="flex:6;background:#9B5CF6">6 mudah</div><div style="flex:9;background:var(--purple)">9 sedang</div><div style="flex:5;background:var(--ink)">5 sulit</div><div style="flex:3;background:var(--pink)">3 HOTS</div></div>
+ <div class="howto" ${IN(1)}>${esc(s.note)}</div></div>`;
+function meter(lv,h){return `<span class="meter ${h?'h':''}">${[1,2,3,4].slice(0,h?4:3).map(k=>`<i class="${k<=lv?'f':''}"></i>`).join('')}</span>`}
+R.quiz=s=>{const n=s.o.length,top=s.fig?610:s.seq?600:(s.q.length>95?560:500);
+ return `<div class="pad ${s.fig?'hasfig':''}" style="bottom:auto">
+ <div class="qhead" ${IN(.05)}><span class="chip ${s.lv?'acc':''}">${esc(s.label)}</span>${s.lv?meter(s.lv):''}<button class="timer" data-t="${s.time||60}">▶ ${s.time||60} detik</button></div>
+ <div class="q ${s.q.length>110?'sm':''}" ${IN(.15)}>${md(s.q)}</div>
+ ${s.seq?`<div class="seq" ${IN(.3)}>${s.seq.map(x=>`<span class="${x==='?'?'qm':''}">${esc(x)}</span>`).join('')}</div>`:''}
+ <div class="howto" ${IN(.35)}>${esc(s.how||'Jawab lewat polling Zoom · penonton YouTube Live: tulis di chat')}</div></div>
+ ${s.fig?`<div class="qfig in" style="--d:.3s">${s.fig}</div>`:''}
+ <div class="opts ${n===3?'c3':''}" style="top:${top}px">${s.o.map((t,k)=>`<button class="opt in" style="--d:${.4+k*.08}s" data-k="${k}"><b>${L[k]}</b><span>${esc(t)}</span></button>`).join('')}</div>
+ <div class="why"><b>Jawaban ${L[s.a]}.</b> ${md(s.w)}</div>`};
+R.budget=s=>{const tot=s.items.reduce((a,x)=>a+x[2],0);
+ return `<div class="pad"><div class="kick" ${IN(.05)}>${esc(s.kick)}</div><h1 class="t" ${IN(.15)}>${s.title}</h1>
+ <div class="agbar" ${IN(.3)} style="margin-top:60px;height:190px">${s.items.map((x,k)=>`<div style="flex:${x[2]};background:${x[3]}"><span style="font-size:${x[2]<8?26:32}px">${esc(x[0])}</span><small>${esc(x[1])}</small><small style="opacity:1;font-size:26px">= ${x[2]} mnt</small></div>`).join('')}</div>
+ <div class="g3" style="margin-top:60px">${s.cards.map((c,k)=>`<div class="card" ${IN(.6+k*.12)}><div class="num">0${k+1}</div><div class="ch">${esc(c[0])}</div><div class="cx">${md(c[1])}</div></div>`).join('')}</div></div>`};
+R.hots=s=>`<div class="pad" style="bottom:auto">
+ <div class="qhead" ${IN(.05)}><span class="chip pk">${esc(s.label)}</span>${meter(4,1)}<button class="timer" data-t="${s.time||120}">▶ ${s.time||120} detik</button></div>
+ <div class="q" ${IN(.15)}>${md(s.q)}</div>
+ <div class="hbox" ${IN(.3)}><input class="hin" inputmode="numeric" placeholder="Jawabanmu" aria-label="Jawaban"><button class="hgo">Kirim jawaban</button><span class="hmsg"></span></div>
+ <div class="hnote" ${IN(.4)}>Di web lomba, soal HOTS dijawab dengan <b>satu bilangan saja</b>, tanpa satuan. Coba ketik di kotak ini seperti di web!</div>
+ <div class="hans">Jawaban: ${esc(s.ans)}</div></div>
+ <div class="why"><b>Pembahasan.</b> ${md(s.w)}</div>`;
+const VIS={
+ tens:()=>`${[['47',4,7],['74',7,4]].map(([lab,t,o],r)=>`<div style="display:flex;align-items:flex-end;gap:34px;margin:${r?34:0}px 0 0"><div style="font:800 84px var(--display);color:var(--purple);width:130px">${lab}</div><div class="tens">${Array(t).fill('<div class="rod"></div>').join('')}<div style="width:20px"></div><div style="display:grid;grid-template-columns:repeat(4,30px);gap:8px;align-content:end">${Array(o).fill('<div class="cube"></div>').join('')}</div></div></div>`).join('')}
+ <div style="font:700 32px/1.35 var(--body);margin-top:34px"><b>4 puluhan</b> lebih sedikit dari <b>7 puluhan</b>, jadi <b>47 &lt; 74</b></div>`,
+ pattern:()=>`<div class="pat">${['★','●','●','★','●','●','★','?'].map(c=>`<span class="${c==='★'?'s':c==='?'?'qq':'c'}">${c}</span>`).join('')}</div>
+ <svg width="1000" height="60" style="display:block;margin-top:8px"><path d="M8 10 v24 h366 v-24" fill="none" stroke="#E6328C" stroke-width="5" stroke-dasharray="460" stroke-dashoffset="460" style="animation:draw 1.2s .6s forwards"/><path d="M386 10 v24 h366 v-24" fill="none" stroke="#E6328C" stroke-width="5" stroke-dasharray="460" stroke-dashoffset="460" style="animation:draw 1.2s 1.2s forwards"/></svg>
+ <div style="font:700 32px var(--body);margin-top:8px">Bagian yang berulang: <b>★ ● ●</b></div>`,
+ frac:()=>{const bar=(lab,p,f,alt)=>`<div class="frow"><span>${lab}</span><div class="fbar ${alt?'alt':''}">${Array(p).fill(0).map((_,k)=>`<i class="${k<f?'f':''}"></i>`).join('')}</div></div>`;
+  return `<div class="num">SENILAI</div>${bar('1/2',2,1)}${bar('2/4',4,2)}<div class="num" style="margin-top:34px">BANDINGKAN: 3/4 ATAU 2/3?</div>${bar('9/12',12,9,1)}${bar('8/12',12,8,1)}<div style="font:700 32px var(--body);margin-top:20px">Samakan penyebut → <b>3/4 &gt; 2/3</b></div>`},
+ barmodel:()=>`${[['Adi',2,'var(--purple)'],['Budi',3,'var(--acc)']].map(([n,k,c])=>`<div class="bm"><span>${n}</span>${Array(k).fill(`<i style="background:${c}">?</i>`).join('')}</div>`).join('')}
+ <div style="font:800 40px var(--display);margin-top:24px">5 kotak = 40 → 1 kotak = <span class="g">8</span></div>`,
+ rects:()=>`<svg viewBox="0 0 760 330" width="760" style="display:block"><rect x="20" y="20" width="560" height="260" rx="6" fill="#fff" stroke="#6D35D9" stroke-width="10"/><line x1="300" y1="20" x2="300" y2="280" stroke="${D.acc}" stroke-width="10"/><text x="160" y="165" font-size="64" font-weight="800" text-anchor="middle" fill="#1A1033" font-family="Bricolage Grotesque,sans-serif">1</text><text x="440" y="165" font-size="64" font-weight="800" text-anchor="middle" fill="#1A1033" font-family="Bricolage Grotesque,sans-serif">2</text><text x="670" y="165" font-size="44" font-weight="800" text-anchor="middle" fill="#E6328C" font-family="Bricolage Grotesque,sans-serif">+ 1 besar</text></svg>
+ <div style="font:700 32px var(--body);margin-top:16px">2 kecil + 1 besar = <b>3 persegi panjang</b></div>`,
+ bags:()=>`<div style="display:flex;gap:28px">${[0,1,2].map(b=>`<div style="flex:1;border:4px solid var(--ink);border-radius:28px;padding:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;justify-items:center">${[0,1,2,3,4].map(k=>{const x=b===2&&k<4;return `<div style="width:56px;height:56px;border-radius:50%;background:${x?'#fff':'var(--purple)'};border:4px solid var(--purple);display:grid;place-items:center;font:800 40px var(--display);color:#E6328C">${x?'×':''}</div>`}).join('')}</div>`).join('')}</div>
+ <div style="font:700 34px var(--body);margin-top:24px">5 + 5 + 5 = 15, dicoret 4 → <b>11</b></div>`,
+ logic:()=>{const H=['','Kucing','Ikan','Burung'],R=[['Andi','✗','✓','✗'],['Beni','?','?','?'],['Cici','?','?','?']];
+  return `<table style="border-collapse:collapse;width:100%;font:800 38px var(--display)">${[H,...R].map((r,i)=>`<tr>${r.map((c,j)=>`<td style="border:3px solid var(--ink);padding:18px 14px;text-align:center;background:${i===0||j===0?'var(--paper)':'#fff'};color:${c==='✗'?'#E6328C':c==='✓'?'#15803D':c==='?'?'#B9AED6':'var(--ink)'};font-size:${i===0?28:38}px">${c}</td>`).join('')}</tr>`).join('')}</table>
+  <div style="font:700 30px var(--body);margin-top:20px">Petunjuk "Andi tidak memelihara kucing atau burung" → Andi pasti <b>ikan</b></div>`},
+ lshape:()=>`<svg viewBox="0 0 760 520" width="380" style="display:block"><path d="M60 40 H260 V290 H560 V440 H60 Z" fill="${D.acc}" fill-opacity=".25" stroke="#1A1033" stroke-width="8" stroke-linejoin="round"/><path d="M260 40 H560 V290" fill="none" stroke="#E6328C" stroke-width="6" stroke-dasharray="18 12"/>
+ <g font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="40" fill="#1A1033"><text x="310" y="495" text-anchor="middle">10 cm</text><text x="30" y="250" text-anchor="middle" transform="rotate(-90 30 250)">8 cm</text><text x="410" y="30" text-anchor="middle" fill="#E6328C">6 cm</text><text x="580" y="180" fill="#E6328C">5 cm</text><text x="410" y="180" text-anchor="middle" fill="#E6328C">lubang</text></g></svg>`,
+ cards:s=>s.cards.map((f,k)=>`<div class="fm in" style="--d:${.5+k*.15}s;text-align:left;font:600 34px/1.35 var(--body)">${md(f)}</div>`).join(''),
+ formulas:s=>s.formulas.map((f,k)=>`<div class="fm in" style="--d:${.5+k*.15}s">${esc(f)}</div>`).join('')
+};
+R.idea=s=>`<div class="pad"><div class="kick" ${IN(.05)}>Pelajaran hari ini</div><h1 class="t" ${IN(.15)}>${md(s.title)}</h1><p class="lead" ${IN(.25)}>${md(s.lead)}</p>
+ <div style="display:grid;grid-template-columns:900px 1fr;gap:70px;margin-top:50px">
+ <div class="vis" ${IN(.35)}>${VIS[s.vis](s)}</div>
+ <div>${s.steps.map((x,k)=>`<div class="stp in" style="--d:${.5+k*.15}s"><div class="n">${k+1}</div><div class="x">${md(x)}</div></div>`).join('')}</div></div></div>`;
+R.example=s=>`<div class="pad"><div class="kick" ${IN(.05)}>${esc(s.kick||'Contoh · kita kerjakan bersama')}</div><h1 class="t" ${IN(.15)} style="font-size:76px">${md(s.title)}</h1>
+ <div style="display:grid;grid-template-columns:${s.vis?'900px 1fr':'1fr 1fr'};gap:70px;margin-top:46px">
+ <div><div class="card" ${IN(.25)} style="font:700 42px/1.35 var(--body)">${md(s.problem)}</div>${s.hint?`<div ${IN(.35)} style="margin-top:30px"><span class="chip acc">Petunjuk: ${esc(s.hint)}</span></div>`:''}
+ ${s.vis?`<div class="vis" ${IN(.45)} style="margin-top:36px;padding:30px 36px">${VIS[s.vis](s)}</div>`:''}</div>
+ <div>${s.steps.map((x,k)=>`<div class="stp st hid"><div class="n">${k+1}</div><div class="x">${md(x)}</div></div>`).join('')}
+ <div class="howto">Tekan → untuk membuka langkah satu per satu.</div>${s.winners?`<div class="card soft" style="margin-top:26px;font:600 28px/1.4 var(--body)">Penjawab benar: <span contenteditable spellcheck="false">${esc(s.winners)}</span></div>`:''}</div></div></div>`;
+R.trick=s=>`<div class="pad" style="top:200px"><div class="kick" ${IN(.05)}>${esc(s.kickT||'Jurus hari ini')}</div><div class="quote" ${IN(.2)}>“${md(s.text)}”</div><p class="lead" ${IN(.45)} style="margin-top:44px;font-size:40px;max-width:1500px">${md(s.sub)}</p></div>`;
+R.challenge=s=>`<div class="pad"><div class="kick" ${IN(.05)}>Tantangan Mingguan</div><h1 class="t" ${IN(.15)}>Bisa kamu <span class="g">pecahkan?</span></h1>
+ <div style="display:grid;grid-template-columns:1.25fr .75fr;gap:60px;margin-top:56px">
+ <div class="card" ${IN(.3)} style="font:700 48px/1.4 var(--body);min-height:420px;display:flex;align-items:center"><div>${md(s.task)}</div></div>
+ <div>${s.how.map((x,k)=>`<div class="stp in" style="--d:${.45+k*.15}s"><div class="n">${k+1}</div><div class="x" style="font-size:32px">${md(x)}</div></div>`).join('')}</div></div></div>`;
+R.attend=s=>`<div class="pad" style="top:190px"><div class="kick" ${IN(.05)}>Absensi</div><h1 class="t" ${IN(.15)}>Catat kode kehadiran ini</h1>
+ <div class="code" ${IN(.3)}>${[0,1,2,3].map(()=>`<span contenteditable spellcheck="false">?</span>`).join('')}</div>
+ <p class="lead" ${IN(.5)} style="margin-top:60px">${md(s.text)}</p></div>`;
+R.parents=s=>`<div class="pad"><div class="kick" ${IN(.05)}>Untuk Ayah & Bunda</div><h1 class="t" ${IN(.15)}>Mendampingi di rumah</h1>
+ <div class="g3" style="margin-top:60px">${s.items.map((c,k)=>`<div class="card" ${IN(.3+k*.12)} style="min-height:360px"><div class="num">0${k+1}</div><div class="ch">${esc(c[0])}</div><div class="cx">${md(c[1])}</div></div>`).join('')}</div>
+ <p class="lead" ${IN(.8)} style="margin-top:60px;font-size:30px">${md(s.foot)}</p></div>`;
+R.closing=s=>`<div class="pad" style="top:180px"><div ${IN(.05)}><span class="chip ln" style="color:#fff">Terima kasih sudah ikut!</span></div>
+ <h1 class="cov-title" ${IN(.2)} style="font-size:150px;margin-top:40px">${D.closeTitle}</h1>
+ <div ${IN(.4)} style="margin-top:40px"><span class="chip" style="background:#fff;color:var(--ink);font-size:32px;padding:16px 30px">${esc(s.next)}</span></div>
+ <div class="g3" style="margin-top:70px">${s.items.map((c,k)=>`<div ${IN(.55+k*.12)} style="border-top:4px solid rgba(255,255,255,.6);padding-top:20px"><div style="font:800 34px var(--display)">${esc(c[0])}</div><div style="font:600 28px/1.4 var(--body);opacity:.88;margin-top:8px">${md(c[1])}</div></div>`).join('')}</div></div>`;
+
+/* ---------- build ---------- */
+function mergeStyles(h){let p;do{p=h;h=h.replace(/(<[^>]*?)style="([^"]*)"([^>]*?)style="([^"]*)"/g,'$1style="$2;$4"$3')}while(h!==p);return h}
+function build(){stage.querySelectorAll('.slide').forEach(e=>e.remove());
+ els=S.map((s,i)=>{const e=document.createElement('section');const dk=s.type==='cover'||s.type==='closing'?'grad':(s.type==='trick'||s.type==='attend'?'dark':'');
+  e.className='slide '+dk;e.innerHTML=mergeStyles(deco(i,!!dk)+R[s.type](s)+chrome(s,i));stage.insertBefore(e,$('#cf'));return e});}
+function go(n,force){n=Math.max(0,Math.min(S.length-1,n));if(n===cur&&!force)return;const back=n<cur;
+ els.forEach((e,k)=>{e.classList.remove('on','back');if(k!==n&&back)e.classList.add('back')});
+ const e=els[n];void e.offsetWidth;e.classList.add('on');cur=n;enter(e);
+ $('#ct').textContent=(n+1)+' / '+S.length;$('#prog').style.width=((n+1)/S.length*100)+'%';notes();
+ try{history.replaceState(null,'','#'+(n+1))}catch(_){}}
+function enter(e){$$('.timer',e).forEach(t=>{clearInterval(t._iv);t.classList.remove('run','end');t.textContent='▶ '+t.dataset.t+' detik'})}
+function notes(){$('#notes').innerHTML=`<h4>SLIDE ${cur+1} · ${SECS[S[cur].sec].toUpperCase()}</h4>${esc(S[cur].notes||'')}`}
+function reveal(e,k){const s=S[els.indexOf(e)];if(e.classList.contains('rv'))return;e.classList.add('rv');
+ if(s.type==='quiz'){$$('.opt',e).forEach((o,j)=>{o.classList.remove('in');o.classList.add(j===s.a?'ok':'no');if(j===k)o.classList.add('pk')});if(k===s.a)burst(960,620,140)}
+ if(s.type==='hots'){const v=$('.hin',e).value.trim();if(v&&norm(v)===norm(s.ans))burst(960,520,160)}}
+const norm=v=>String(v).replace(/\s/g,'').replace(',','.').replace(/^\+/,'');
+function next(){const e=els[cur],s=S[cur];
+ const fc=$('.fc:not(.open)',e);if(fc){fc.classList.add('open');return}
+ const st=$('.st.hid',e);if(st){st.classList.remove('hid');return}
+ if((s.type==='quiz'||s.type==='hots')&&!e.classList.contains('rv')){reveal(e,-1);return}
+ go(cur+1)}
+stage.addEventListener('click',ev=>{const t=ev.target;
+ const o=t.closest('.opt');if(o){const e=o.closest('.slide');if(!e.classList.contains('rv'))reveal(e,+o.dataset.k);return}
+ const fc=t.closest('.fc');if(fc){fc.classList.toggle('open');return}
+ const tm=t.closest('.timer');if(tm){clearInterval(tm._iv);if(tm.classList.contains('run')){tm.classList.remove('run');tm.textContent='▶ '+tm.dataset.t+' detik';return}
+  let n=+tm.dataset.t;tm.classList.remove('end');tm.classList.add('run');const f=()=>{tm.textContent=Math.floor(n/60)+':'+String(n%60).padStart(2,'0')};f();
+  tm._iv=setInterval(()=>{n--;if(n<=0){clearInterval(tm._iv);tm.classList.remove('run');tm.classList.add('end');tm.textContent='Waktu habis!'}else f()},1000);return}
+ const hg=t.closest('.hgo');if(hg){const e=hg.closest('.slide'),s=S[els.indexOf(e)],v=$('.hin',e).value.trim(),m=$('.hmsg',e);
+  if(!v){m.className='hmsg no';m.textContent='Isi jawabanmu dulu';return}
+  if(!/^[-+]?\d+([.,]\d+)?$/.test(v)){m.className='hmsg no';m.textContent='Satu bilangan saja, tanpa satuan';return}
+  const ok=norm(v)===norm(s.ans);m.className='hmsg '+(ok?'ok':'no');m.textContent=ok?'Benar!':'Belum tepat';reveal(e,-1);return}});
+/* confetti */
+let parts=[],raf=0;
+function burst(x,y,n){const cols=['#E6328C','#6D35D9','#FFD84D',D.acc,'#ffffff','#1A1033'];for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*32,vy:-Math.random()*30-6,r:Math.random()*10+6,c:cols[i%6],a:Math.random()*6,va:(Math.random()-.5)*.4,l:120+Math.random()*60});if(!raf)raf=requestAnimationFrame(tick)}
+function tick(){const c=$('#cf'),x=c.getContext('2d');x.clearRect(0,0,1920,1080);parts=parts.filter(p=>p.l-->0&&p.y<1200);parts.forEach(p=>{p.vy+=.75;p.x+=p.vx;p.y+=p.vy;p.vx*=.99;p.a+=p.va;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r,-p.r/2,p.r*2,p.r);x.restore()});raf=parts.length?requestAnimationFrame(tick):0}
+/* fit */
+function fit(){const v=$('#view'),s=Math.min(v.clientWidth/1920,v.clientHeight/1080);stage.style.transform=`translate(-50%,-50%) scale(${s})`}
+addEventListener('resize',fit);
+function fs(){const on=!app.classList.contains('fs');app.classList.toggle('fs',on);if(on){(app.requestFullscreen?app.requestFullscreen():Promise.reject()).catch(()=>{})}else if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});setTimeout(fit,60)}
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)app.classList.remove('fs');setTimeout(fit,60)});
+function overview(){const o=$('#ov');if(!o.hidden){o.hidden=true;return}o.innerHTML='';
+ els.forEach((e,i)=>{const t=document.createElement('div');t.className='tile'+(i===cur?' cur':'');const c=e.cloneNode(true);c.className=e.className.replace(/\bon\b|\bback\b/g,'')+' static on';c.classList.add('sc');t.innerHTML=`<em>${i+1}</em>`;t.append(c);t.onclick=()=>{o.hidden=true;go(i)};o.append(t)});
+ o.hidden=false;requestAnimationFrame(()=>$$('.tile',o).forEach(t=>{$('.sc',t).style.transform=`scale(${t.clientWidth/1920})`}))}
+$('#bp').onclick=()=>go(cur-1);$('#bn').onclick=next;$('#bo').onclick=overview;$('#bf').onclick=fs;
+$('#bt').onclick=()=>{$('#notes').hidden=!$('#notes').hidden};$('#bh').onclick=()=>{$('#help').hidden=!$('#help').hidden};
+addEventListener('keydown',ev=>{const t=ev.target;if(t.isContentEditable||t.tagName==='INPUT'){if(ev.key==='Escape')t.blur();if(t.tagName==='INPUT'&&ev.key==='Enter'){t.closest('.slide').querySelector('.hgo').click()}return}
+ const k=ev.key;if(k==='ArrowRight'||k===' '||k==='PageDown'){ev.preventDefault();next()}else if(k==='ArrowLeft'||k==='PageUp')go(cur-1);
+ else if(k==='Home')go(0);else if(k==='End')go(S.length-1);else if(k==='f'||k==='F')fs();else if(k==='o'||k==='O')overview();else if(k==='n'||k==='N')$('#bt').click();
+ else if(k==='Escape'){if(!$('#ov').hidden)$('#ov').hidden=true;else if(app.classList.contains('fs'))fs()}});
+build();fit();const h=parseInt((location.hash||'').slice(1));go(h>0?h-1:0,true);
+</script>
+</body>
+</html>
