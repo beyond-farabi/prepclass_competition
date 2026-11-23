@@ -157,6 +157,18 @@ kbd{display:inline-grid;place-items:center;min-width:34px;height:32px;padding:0 
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
 }
+
+/* ---------- tombol script (paling bawah) ---------- */
+.script-cta{margin:44px 0 0;padding-bottom:56px}
+.script-btn{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;padding:26px 30px;border-radius:24px;background:var(--acc);color:var(--on-acc);text-decoration:none;
+  box-shadow:0 10px 24px rgba(30,18,64,.16);transition:transform .2s,box-shadow .2s}
+.script-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(30,18,64,.22)}
+.script-btn b{display:block;font:800 clamp(24px,3.4vw,38px)/1.08 var(--display);letter-spacing:-.02em}
+.script-btn span{display:block;margin-top:6px;font:600 15px/1.4 var(--body);opacity:.85}
+.script-btn svg{flex:0 0 auto;width:44px;height:44px}
+.script-alt{margin:14px 4px 0;font:600 14px/1.5 var(--body);color:var(--soft)}
+.script-alt a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){.script-btn{padding:22px 20px;border-radius:20px}.script-btn svg{width:32px;height:32px}}
 </style>
 </head>
 <body data-world="mbc">
@@ -188,7 +200,7 @@ kbd{display:inline-grid;place-items:center;min-width:34px;height:32px;padding:0 
       <svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M70 18H26l26 32-26 32h44"/></svg>
     </button>
     <button class="world hc" role="tab" id="tab-hc" aria-controls="cat" data-w="hc">
-      <span class="nm">Algo-HC</span><span class="full">Algonova Holiday Challenge</span><span class="cnt">3 kategori, 12 deck</span>
+      <span class="nm">Algo-HC</span><span class="full">Algonova Holiday Competition</span><span class="cnt">3 kategori, 12 deck</span>
       <svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M34 24L10 50l24 26M66 24l24 26-24 26M57 16L43 84"/></svg>
     </button>
   </div>
@@ -213,6 +225,15 @@ kbd{display:inline-grid;place-items:center;min-width:34px;height:32px;padding:0 
       <p class="note" id="asof"></p>
     </div>
   </footer>
+
+  <div class="script-cta">
+    <a class="script-btn" href="script.html" aria-label="Buka Script Tutor">
+      <div><b>Script Tutor</b><span>Prep Class MBC · Prep Class Algo-HC · Lecture Class. Apa yang diucapkan dan dilakukan di tiap slide.</span></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    </a>
+    <p class="script-alt">Versi dokumen: <a href="https://docs.google.com/document/d/1R8BR52IH4t9pFUW1hRxHIOr7A1XpU0uIfCuwh2U7LEE/edit" target="_blank" rel="noopener">Script Tutor di Google Doc</a></p>
+  </div>
+
 </div>
 
 <script>
